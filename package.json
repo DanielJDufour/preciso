@@ -1,0 +1,30 @@
+{
+  "name": "preciso",
+  "version": "0.0.0",
+  "description": "Precise Mathematical Functions",
+  "main": "preciso.js",
+  "scripts": {
+    "format": "npx prettier --arrow-parens=avoid --print-width=160 --trailing-comma=none --write *.js",
+    "perf": "node perf.js",
+    "test": "node test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DanielJDufour/preciso.git"
+  },
+  "keywords": [
+    "accurate",
+    "functions",
+    "math",
+    "precise"
+  ],
+  "author": "Daniel J. Dufour",
+  "license": "CC0-1.0",
+  "bugs": {
+    "url": "https://github.com/DanielJDufour/preciso/issues"
+  },
+  "homepage": "https://github.com/DanielJDufour/preciso#readme",
+  "devDependencies": {
+    "flug": "^2.2.0"
+  }
+}
