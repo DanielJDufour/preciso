@@ -3,10 +3,13 @@
 module.exports = function expand(n) {
   const nlen = n.length;
 
+  const sign = n[0] === "-" ? "-" : "";
+  if (sign === "-") n = n.substring(1);
+
   const index_of_e = n.indexOf("e");
 
   // number not in exponential notation
-  if (index_of_e === -1) return n;
+  if (index_of_e === -1) return sign + n;
 
   const index_of_dot = n.indexOf(".");
 
@@ -29,15 +32,15 @@ module.exports = function expand(n) {
     const zct = normshift - baselen;
     let result = base;
     for (let i = 0; i < zct; i++) result += "0";
-    return result;
+    return sign + result;
   } else if (normshift < 0) {
     // need to add zeros in decimal places
     result = "0.";
     for (let i = 0; i > normshift; i--) result += "0";
     result += base;
-    return result;
+    return sign + result;
   } else {
     // shifting within the base
-    return base.substring(0, normshift) + "." + base.substring(normshift);
+    return sign + base.substring(0, normshift) + "." + base.substring(normshift);
   }
-}
+};

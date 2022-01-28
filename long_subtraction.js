@@ -134,4 +134,4 @@ module.exports = function long_subtraction(a, b) {
   if (result[0] === ".") result = "0" + result;
 
   return result;
-}
+};

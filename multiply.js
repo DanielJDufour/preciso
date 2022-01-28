@@ -21,4 +21,4 @@ module.exports = function multiply(a, b) {
   }
 
   return out_sign + long_multiplication(a, b);
-}
+};

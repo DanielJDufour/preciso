@@ -2,9 +2,13 @@ const test = require("flug");
 const Big = require("big.js");
 const preciso = require("./preciso.js");
 const add = require("./add.js");
+const divide = require("./divide.js");
 const multiply = require("./multiply.js");
 const subtract = require("./subtract.js");
 const expand = require("./expand.js");
+
+// set decimal precision to 100
+Big.DP = 100;
 
 const NUM_PASSES = 10_000;
 
@@ -36,6 +40,10 @@ function get_random_number() {
 
 const duration = {
   add: {
+    preciso: 0,
+    big: 0
+  },
+  divide: {
     preciso: 0,
     big: 0
   },
@@ -71,6 +79,10 @@ for (let i = 0; i < NUM_PASSES; i++) {
   duration.add.big += performance.now() - start;
 
   start = performance.now();
+  const divide_result_big = Big(astr).div(bstr);
+  duration.divide.big += performance.now() - start;
+
+  start = performance.now();
   const multiply_result_big = Big(astr).times(bstr);
   duration.multiply.big += performance.now() - start;
 
@@ -85,6 +97,10 @@ for (let i = 0; i < NUM_PASSES; i++) {
   duration.add.preciso += performance.now() - start;
 
   start = performance.now();
+  const divide_result_preciso = divide(astr, bstr);
+  duration.divide.preciso += performance.now() - start;
+
+  start = performance.now();
   const multiply_result_preciso = multiply(astr, bstr);
   duration.multiply.preciso += performance.now() - start;
 
@@ -94,6 +110,10 @@ for (let i = 0; i < NUM_PASSES; i++) {
 
   if (expand(add_result_big.toString()) !== add_result_preciso) {
     throw new Error(`uh oh. add("${astr}", "${bstr}") returned \n"${add_result_preciso}", not \n"${expand(add_result_big.toString())}"`);
+  }
+
+  if (expand(divide_result_big.toString()) !== divide_result_preciso) {
+    throw new Error(`uh oh. divide("${astr}", "${bstr}") returned \n"${divide_result_preciso}", not \n"${expand(divide_result_big.toString())}"`);
   }
 
   if (expand(multiply_result_big.toString()) !== multiply_result_preciso) {
@@ -108,5 +128,6 @@ for (let i = 0; i < NUM_PASSES; i++) {
 console.log(duration);
 
 console.log("add %", duration.add.preciso / duration.add.big);
+console.log("divide %", duration.divide.preciso / duration.divide.big);
 console.log("multiply %", duration.multiply.preciso / duration.multiply.big);
 console.log("subtract %", duration.subtract.preciso / duration.subtract.big);

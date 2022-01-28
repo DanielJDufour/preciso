@@ -105,3 +105,4 @@ dist
 
 *.old
 pnpm-lock.yaml
+*bak*

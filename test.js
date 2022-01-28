@@ -10,12 +10,89 @@ const {
   add,
   long_addition,
 
+  divide,
+  long_division,
+
   multiply,
   long_multiplication,
+
+  round_last_decimal,
 
   subtract,
   long_subtraction
 } = preciso;
+
+test("round_decimal", ({ eq }) => {
+  eq(round_last_decimal("0.4"), "0");
+  eq(round_last_decimal("0.5"), "1");
+  eq(round_last_decimal("0.545"), "0.55");
+  eq(round_last_decimal("0.544"), "0.54");
+  eq(round_last_decimal("0.49"), "0.5");
+  eq(round_last_decimal("0.499"), "0.5");
+});
+
+test("long_division", ({ eq }) => {
+  eq(long_division("2", "20.5", { max_decimal_digits: 3 }), "0.098");
+  eq(long_division("24", "20.4", { max_decimal_digits: 3 }), "1.176");
+  eq(long_division("24", "204", { max_decimal_digits: 4 }), "0.1176");
+  eq(long_division("1", "200", { max_decimal_digits: 10 }), "0.005");
+  eq(long_division("7811318914817906", "733134704312198", { max_decimal_digits: 2 }), "10.65");
+  eq(long_division("7811318914817906", "733134704312198", { max_decimal_digits: 20 }), "10.65468442412123875145");
+  eq(
+    long_division("7811318914817906", "733134704312198"),
+    "10.6546844241212387514507804615870008541478913639542244503490575929003149707829237705155924042746898564"
+  );
+  eq(long_division("3640", "15", { ellipsis: true, max_decimal_digits: 5 }), "242.666...");
+  eq(long_division("1", "100"), "0.01");
+  eq(long_division("1", "1000"), "0.001");
+  eq(long_division("1", "3", { ellipsis: false, max_decimal_digits: 3 }), "0." + "3".repeat(3));
+  eq(long_division("59", "1.2", { max_decimal_digits: 2 }), "49.17");
+  eq(long_division("59", "1.2", { max_decimal_digits: 3 }), "49.167");
+  eq(long_division("1", "3", { ellipsis: true }), "0.333...");
+  eq(long_division(".2", "10", { max_decimal_digits: 3 }), "0.02");
+  eq(long_division("0.2", "10", { max_decimal_digits: 3 }), "0.02");
+  eq(long_division("2", "10"), "0.2");
+  eq(long_division("1", "10"), "0.1");
+  eq(long_division("10", "1"), "10");
+  eq(long_division("3630", "15"), "242");
+  eq(long_division("111", "10"), "11.1");
+  eq(long_division("22", "2"), "11");
+  eq(long_division("222", "2"), "111");
+  eq(long_division("3640", "15", { max_decimal_digits: 3 }), "242.667");
+  eq(long_division("3640", "15", { ellipsis: true }), "242.666...");
+  eq(long_division("487", "32"), "15.21875");
+  eq(long_division("32", "16"), "2");
+  eq(long_division("10", "2"), "5");
+  eq(long_division("12", "32"), "0.375");
+  eq(long_division("1", "10"), "0.1");
+  eq(long_division("716.12", "85985618.58"), "0.0000083283694625483265320250487869433200279246045984542360665075766673632040759344386634288722005958");
+});
+
+test("divide", ({ eq }) => {
+  eq(
+    divide("-9006455032.11562", "22.869243126448367"),
+    "-393823922.4760184723811307399012471171864132436880578315806968247728994696230966722857123126610496303798446557"
+  );
+  eq(divide("24", "20.4", { max_decimal_digits: 3 }), "1.176");
+  eq(divide("1", "234567").startsWith("0.00000426"), true);
+  eq(divide("-781131.8914817906", "-733.134704312198", { max_decimal_digits: 0 }), "1065");
+  eq(
+    divide("-781131.8914817906", "-733.134704312198", { max_decimal_digits: 100 }),
+    "1065.4684424121238751450780461587000854147891363954224450349057592900314970782923770515592404274689856409"
+  );
+  eq(
+    divide("9338085.909340393", "-9286303586.268997"),
+    "-0.0010055762039858316578900205730924892611948083759542060841788902534350260319495803206108599799654063"
+  );
+  eq(divide("3640", "15", { ellipsis: true, max_decimal_digits: 5 }), "242.666...");
+  eq(divide("3640", "-15", { ellipsis: true, max_decimal_digits: 5 }), "-242.666...");
+  eq(divide("-0.2", "10", { max_decimal_digits: 3 }), "-0.02");
+  eq(divide("-2", "-10"), "0.2");
+  eq(divide("1", "-10"), "-0.1");
+  eq(divide("10", "1"), "10");
+  eq(divide("-3630", "15"), "-242");
+  eq(divide("-111", "-10"), "11.1");
+});
 
 test("long_multiplication", ({ eq }) => {
   eq(long_multiplication("0.4", "0.2"), "0.08");
@@ -70,6 +147,7 @@ test("absolute", ({ eq }) => {
 });
 
 test("expand", ({ eq }) => {
+  eq(expand("-8822030491.7968048209392"), "-8822030491.7968048209392");
   eq(expand("4218072702803791.8004622727"), "4218072702803791.8004622727");
   eq(expand("1.2e2"), "120");
   eq(expand("4.25e7"), "42500000");
@@ -77,6 +155,10 @@ test("expand", ({ eq }) => {
   eq(expand("1.2345e2"), "123.45");
   eq(expand("1.23e+20"), "123000000000000000000");
   eq(expand("5.045423379090863e-7"), "0.0000005045423379090863");
+  eq(
+    expand("-7.0957785648399024755535458291091456514990305749706184102834950392700045391509013462894856975e-9"),
+    "-0.0000000070957785648399024755535458291091456514990305749706184102834950392700045391509013462894856975"
+  );
 });
 
 test("compare", ({ eq }) => {
@@ -134,10 +216,8 @@ test("0.1 + 0.2", ({ eq }) => {
 });
 
 test("add", ({ eq }) => {
-  const a = "7.609890885355359";
-  const b = "-47020050888.60273";
-  const result = add(a, b);
-  eq(result, "-47020050880.992839114644641");
+  eq(add("7.609890885355359", "-47020050888.60273"), "-47020050880.992839114644641");
+  eq(add("-960.7970488209392", "-8822029530.999756"), "-8822030491.7968048209392");
 });
 
 test("83534564031027.53 + 54503799876882.016", ({ eq }) => {

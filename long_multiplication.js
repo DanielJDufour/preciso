@@ -134,4 +134,4 @@ module.exports = function long_multiplication(a, b) {
   }
 
   return result;
-}
+};

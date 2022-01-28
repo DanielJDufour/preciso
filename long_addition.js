@@ -95,7 +95,7 @@ module.exports = function long_addition(a, b) {
   // console.log({result});
 
   return result;
-}
+};
 
 // add('12345.6789', '357910');
 
