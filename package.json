@@ -3,9 +3,26 @@
   "version": "0.0.0",
   "description": "Precise Mathematical Functions",
   "main": "preciso.js",
+  "files": [
+    "absolute.js",
+    "add.js",
+    "clean.js",
+    "compare.js",
+    "divide.js",
+    "expand.js",
+    "long_addition.js",
+    "long_division.js",
+    "long_multiplication.js",
+    "long_subtraction.js",
+    "multiply.js",
+    "preciso.js",
+    "round_last_decimal.js",
+    "subtract.js"
+  ],
   "scripts": {
     "format": "npx prettier --arrow-parens=avoid --print-width=160 --trailing-comma=none --write *.js",
     "perf": "node perf.js",
+    "prepublishOnly": "npx pkg-ok",
     "test": "node test.js"
   },
   "repository": {
