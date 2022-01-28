@@ -8,6 +8,8 @@ const CHUNK_SIZE = 15;
  */
 
 module.exports = function long_multiplication(a, b) {
+  if (a === "0" || b === "0") return "0";
+
   const top_index_of_dot = a.indexOf(".");
   const bottom_index_of_dot = b.indexOf(".");
 
@@ -22,15 +24,6 @@ module.exports = function long_multiplication(a, b) {
 
   const alen = a.length;
   const blen = b.length;
-
-  // initialize grid and then do grid math???
-  const grid = new Uint8Array(alen * blen);
-
-  /*
-  1000
-    10
-      
-  */
 
   const chunks = [];
   let i = alen;

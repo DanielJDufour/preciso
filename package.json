@@ -16,8 +16,10 @@
     "long_subtraction.js",
     "multiply.js",
     "preciso.js",
+    "remainder.js",
     "round_last_decimal.js",
-    "subtract.js"
+    "subtract.js",
+    "truncate.js"
   ],
   "scripts": {
     "format": "npx prettier --arrow-parens=avoid --print-width=160 --trailing-comma=none --write *.js",

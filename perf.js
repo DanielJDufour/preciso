@@ -4,13 +4,14 @@ const preciso = require("./preciso.js");
 const add = require("./add.js");
 const divide = require("./divide.js");
 const multiply = require("./multiply.js");
+const remainder = require("./remainder.js");
 const subtract = require("./subtract.js");
 const expand = require("./expand.js");
 
 // set decimal precision to 100
 Big.DP = 100;
 
-const NUM_PASSES = 10_000;
+const NUM_PASSES = Number(process.env.PRECISO_TEST_SIZE || 10_000);
 
 function flip_coin() {
   if (Math.random() < Math.random()) return "heads";
@@ -50,6 +51,10 @@ const duration = {
     preciso: 0,
     big: 0
   },
+  remainder: {
+    preciso: 0,
+    big: 0
+  },
   subtract: {
     preciso: 0,
     big: 0
@@ -86,6 +91,10 @@ for (let i = 0; i < NUM_PASSES; i++) {
   duration.multiply.big += performance.now() - start;
 
   start = performance.now();
+  const remainder_result_big = Big(astr).mod(bstr);
+  duration.remainder.big += performance.now() - start;
+
+  start = performance.now();
   const subtract_result_big = Big(astr).minus(bstr);
   duration.subtract.big += performance.now() - start;
 
@@ -104,6 +113,10 @@ for (let i = 0; i < NUM_PASSES; i++) {
   duration.multiply.preciso += performance.now() - start;
 
   start = performance.now();
+  const remainder_result_preciso = remainder(astr, bstr);
+  duration.remainder.preciso += performance.now() - start;
+
+  start = performance.now();
   const subtract_result_preciso = subtract(astr, bstr);
   duration.subtract.preciso += performance.now() - start;
 
@@ -119,14 +132,15 @@ for (let i = 0; i < NUM_PASSES; i++) {
     throw new Error(`uh oh. multiply("${astr}", "${bstr}") returned \n"${multiply_result_preciso}", not \n"${expand(multiply_result_big.toString())}"`);
   }
 
+  if (expand(remainder_result_big.toString()) !== remainder_result_preciso) {
+    throw new Error(`uh oh. remainder("${astr}", "${bstr}") returned \n"${remainder_result_preciso}", not \n"${expand(remainder_result_big.toString())}"`);
+  }
+
   if (expand(subtract_result_big.toString()) !== subtract_result_preciso) {
     throw new Error(`uh oh. subtract("${astr}", "${bstr}") returned \n"${subtract_result_preciso}"\n, not \n"${expand(subtract_result_big.toString())}"`);
   }
 }
 
-console.log(duration);
-
-console.log("add %", duration.add.preciso / duration.add.big);
-console.log("divide %", duration.divide.preciso / duration.divide.big);
-console.log("multiply %", duration.multiply.preciso / duration.multiply.big);
-console.log("subtract %", duration.subtract.preciso / duration.subtract.big);
+Object.keys(duration).sort().forEach(k => {
+  console.log(k, "%", duration[k].preciso / duration[k].big);
+});

@@ -16,11 +16,40 @@ const {
   multiply,
   long_multiplication,
 
+  remainder,
+
   round_last_decimal,
 
   subtract,
-  long_subtraction
+  long_subtraction,
+
+  truncate
 } = preciso;
+
+// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/trunc#using_math.trunc
+test("truncate", ({ eq }) => {
+  eq(truncate("13.37"), "13");
+  eq(truncate("42.84"), "42");
+  eq(truncate("0.123"), "0");
+  eq(truncate("-0.123"), "-0");
+  eq(truncate("-1.123"), "-1");
+});
+
+// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Remainder#remainder_with_positive_dividend
+test("remainder with positive dividend", ({ eq }) => {
+  eq(remainder("13", "5"), "3");
+  eq(remainder("1", "-2"), "1");
+  eq(remainder("1", "2"), "1");
+  eq(remainder("2", "3"), "2");
+  eq(remainder("5.5", "2"), "1.5");
+});
+
+// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Remainder#remainder_with_negative_dividend
+test("remainder with negative dividend", ({ eq }) => {
+  eq(remainder("-13", "5"), "-3");
+  eq(remainder("-1", "2"), "-1");
+  eq(remainder("-4", "2"), "-0");
+});
 
 test("round_decimal", ({ eq }) => {
   eq(round_last_decimal("+0.4"), "0");
@@ -114,6 +143,8 @@ test("long_multiplication", ({ eq }) => {
 });
 
 test("multiply", ({ eq }) => {
+  eq(multiply('955504.4475259942', '0'), '0');
+  eq(multiply('0', '955504.4475259942'), '0');
   eq(multiply("+7147008", "+5"), "35735040");
   eq(multiply("+.20", ".200"), "0.04");
   eq(multiply("+.20", ".2"), "0.04");
