@@ -1,6 +1,9 @@
 // given n is a decimal number
 const up = ["5", "6", "7", "8", "9"];
 module.exports = function round_last_decimal(n) {
+  // remove + from beginning
+  if (n[0] === "+") n = n.substring(1);
+
   //console.log("rounding:", {n});
   const len = n.length;
   //console.log({len});

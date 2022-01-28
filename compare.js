@@ -1,5 +1,10 @@
+const clean = require("./clean.js");
+
 // assume that a and b are positive integers
 module.exports = function compare(a, b) {
+  a = clean(a);
+  b = clean(b);
+
   const alen = a.length;
   const blen = b.length;
 

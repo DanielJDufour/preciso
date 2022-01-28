@@ -69,7 +69,9 @@ module.exports = function long_division(dividend, divisor, { max_decimal_digits 
       // outside greater than inside
       continue;
     } else if (comparison === "=") {
-      for (let i = 0; i < skip; i++) quotient += "0";
+      if (quotient !== "") {
+        for (let i = 0; i < skip; i++) quotient += "0";
+      }
       quotient += "1";
       current = "0";
       skip = 0;

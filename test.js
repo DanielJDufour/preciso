@@ -23,6 +23,7 @@ const {
 } = preciso;
 
 test("round_decimal", ({ eq }) => {
+  eq(round_last_decimal("+0.4"), "0");
   eq(round_last_decimal("0.4"), "0");
   eq(round_last_decimal("0.5"), "1");
   eq(round_last_decimal("0.545"), "0.55");
@@ -69,6 +70,11 @@ test("long_division", ({ eq }) => {
 });
 
 test("divide", ({ eq }) => {
+  eq(divide("100", "10"), "10");
+  eq(divide("100", "10.0"), "10");
+  eq(divide("100.0", "10.0"), "10");
+  eq(divide("+1e7", "+1e6", { max_decimal_digits: 3 }), "10");
+  eq(divide("+24", "+20.4", { max_decimal_digits: 3 }), "1.176");
   eq(
     divide("-9006455032.11562", "22.869243126448367"),
     "-393823922.4760184723811307399012471171864132436880578315806968247728994696230966722857123126610496303798446557"
@@ -86,6 +92,7 @@ test("divide", ({ eq }) => {
   );
   eq(divide("3640", "15", { ellipsis: true, max_decimal_digits: 5 }), "242.666...");
   eq(divide("3640", "-15", { ellipsis: true, max_decimal_digits: 5 }), "-242.666...");
+  eq(divide("-.2", "10", { max_decimal_digits: 3 }), "-0.02");
   eq(divide("-0.2", "10", { max_decimal_digits: 3 }), "-0.02");
   eq(divide("-2", "-10"), "0.2");
   eq(divide("1", "-10"), "-0.1");
@@ -107,6 +114,10 @@ test("long_multiplication", ({ eq }) => {
 });
 
 test("multiply", ({ eq }) => {
+  eq(multiply("+7147008", "+5"), "35735040");
+  eq(multiply("+.20", ".200"), "0.04");
+  eq(multiply("+.20", ".2"), "0.04");
+  eq(multiply("+.2", ".2"), "0.04");
   eq(multiply("7147008", "5"), "35735040");
   eq(multiply("714700808", "5"), "3573504040");
   eq(multiply("8086", "5"), "40430");
@@ -162,6 +173,7 @@ test("expand", ({ eq }) => {
 });
 
 test("compare", ({ eq }) => {
+  eq(compare("1", "+1"), "=");
   eq(compare("1", "1"), "=");
   eq(compare("100", "10"), ">");
   eq(compare("10", "100"), "<");

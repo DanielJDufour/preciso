@@ -1,8 +1,12 @@
+const clean = require("./clean");
 const compare = require("./compare.js");
 const long_addition = require("./long_addition.js");
 const long_subtraction = require("./long_subtraction.js");
 
 module.exports = function subtract(a, b) {
+  a = clean(a);
+  b = clean(b);
+
   const a_is_positive = a[0] !== "-";
   const b_is_positive = b[0] !== "-";
   if (a_is_positive) {

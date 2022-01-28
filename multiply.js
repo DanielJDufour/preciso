@@ -1,8 +1,12 @@
 const absolute = require("./absolute.js");
+const clean = require("./clean.js");
 const compare = require("./compare.js");
 const long_multiplication = require("./long_multiplication.js");
 
 module.exports = function multiply(a, b) {
+  a = clean(a);
+  b = clean(b);
+
   const apos = a[0] !== "-";
   const bpos = b[0] !== "-";
 

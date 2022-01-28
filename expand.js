@@ -1,7 +1,8 @@
 // convert exponential notation to normal string
 // not optimized yet and no support for big numbers
 module.exports = function expand(n) {
-  const nlen = n.length;
+  // remove + from beginning
+  if (n[0] === "+") n = n.substring(1);
 
   const sign = n[0] === "-" ? "-" : "";
   if (sign === "-") n = n.substring(1);
@@ -11,7 +12,7 @@ module.exports = function expand(n) {
   // number not in exponential notation
   if (index_of_e === -1) return sign + n;
 
-  const index_of_dot = n.indexOf(".");
+  let index_of_dot = n.indexOf(".");
 
   // if number doesn't include a period dot
   // then just assume it at the end
