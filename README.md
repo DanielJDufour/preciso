@@ -19,6 +19,11 @@ The following functions are supported:
 - [subtract](#subtract)
 - [truncate](#truncate)
 
+## install
+```bash
+npm install preciso
+```
+
 ### limitations
 - no support for `Infinity`, `-Infinity`, or `NaN`
 
