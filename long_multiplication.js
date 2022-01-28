@@ -49,7 +49,6 @@ module.exports = function long_multiplication(a, b) {
     const bstr = b[ireverse];
 
     const bnum = Number(bstr);
-    // if (isNaN(bnum)) throw new Error("bnum is nan from" + bstr);
 
     let carried = 0;
     let partial = "";
@@ -78,10 +77,7 @@ module.exports = function long_multiplication(a, b) {
     partial_products.push(partial);
 
     partials.push([Array.from(partial).map(char => Number(char)), partial.length]);
-
-    // if (partial.startsWith("N")) throw new Error("nan in partial");
   }
-  // console.log({ partial_products, partials });
 
   // back to front, iterate through columns
   // and add partial products together
@@ -101,7 +97,7 @@ module.exports = function long_multiplication(a, b) {
         sum += pnums[i];
       }
     }
-    // if (isNaN(sum)) throw Error("sum is NaN");
+
     if (sum >= 10) {
       sum = sum.toString();
       result = sum[sum.length - 1] + result;
@@ -110,7 +106,6 @@ module.exports = function long_multiplication(a, b) {
       result = sum + result;
       carried = 0;
     }
-    // if (result.startsWith("94")) throw new Error("UHOH");
   }
 
   // add decimal back in

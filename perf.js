@@ -12,7 +12,6 @@ Big.DP = 100;
 
 const NUM_PASSES = 10_000;
 
-// generate 100 million random numbers
 function flip_coin() {
   if (Math.random() < Math.random()) return "heads";
   else return "tails";
