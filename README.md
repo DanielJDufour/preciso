@@ -19,15 +19,15 @@ The following functions are supported:
 - [subtract](#subtract)
 - [truncate](#truncate)
 
+### limitations
+- no support for `Infinity`, `-Infinity`, or `NaN`
+
 ### absolute
 ```js
 import abs from "preciso/absolute.js";
 
 abs("-10");
 "10"
-
-abs("4");
-"4"
 ```
 
 ### add
@@ -56,7 +56,6 @@ divide("-714.7008086132632", "8135.725531"); // -714.7008086132632 / 8135.725531
 ```
 
 #### remainder
-remainder does the same thing as JavaScript's [Remainder Operator %](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Remainder#remainder_with_negative_dividend) except it only accepts real numbers and it supports numbers of unlimited length.
 ```js
 import remainder from "preciso/truncate.js";
 
@@ -76,11 +75,9 @@ subtract("10", "2.14"); // 10 - 2.14
 ```
 
 ### truncate
-truncate does the same thing as JavaScript's [Math.trunc()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/trunc) except it only accepts real numbers and it supports numbers of unlimited length.
-It basically removes the decimal place and anything to the right of it.
 ```js
 import truncate from "preciso/truncate.js";
 
-truncate("-714.7008086132632");
+truncate("-714.7008086132632"); // equivalent to Math.trunc(-714.7008086132632)
 "-714"
 ```
