@@ -8,6 +8,7 @@
 - simple input and output (simple numerical strings)
 - import only what you need
 - tested on ten thousand random numbers
+- supports scientific exponential notation
 
 ## basic usage
 ### add
