@@ -15,7 +15,7 @@
 import add from "preciso/add.js";
 
 add("0.1", "0.2"); // 0.1 + 0.2
-// "0.3"
+"0.3"
 ```
 
 ### subtract
@@ -23,7 +23,7 @@ add("0.1", "0.2"); // 0.1 + 0.2
 import subtract from "preciso/subtract.js";
 
 subtract("10", "2.14"); // 10 - 2.14
-// "7.86"
+"7.86"
 ```
 
 ### absolute number
