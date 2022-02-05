@@ -49,6 +49,7 @@ test("min/max", ({ eq }) => {
   const nums = ["-1", "02", "2387456152754", "42.1276315263412312312", "-1263.312"];
   eq(min(nums), "-1263.312");
   eq(max(nums), "2387456152754");
+  eq(min("-20015109.354", "943784.9626061671818"), "-20015109.354");
 });
 
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/trunc#using_math.trunc
