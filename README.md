@@ -94,7 +94,7 @@ multiply("-714.7008086132632", "8135.725531"); // -714.7008086132632 * 8135.7255
 "-5814609.6156612701214627592"
 ``` 
 
-#### remainder
+### remainder
 ```js
 import remainder from "preciso/truncate.js";
 
