@@ -23,7 +23,7 @@ const long_multiplication = require("./long_multiplication.js");
 
 const truncate = require("./truncate.js");
 
-module.exports = {
+const module_exports = {
   absolute,
   compare,
   compare_positive,
@@ -49,3 +49,11 @@ module.exports = {
 
   truncate
 };
+
+if (typeof define === "function" && define.amd)
+  define(function () {
+    return module_exports;
+  });
+if (typeof module === "object") module.exports = module_exports;
+if (typeof window === "object") window.preciso = module_exports;
+if (typeof self === "object") self.preciso = module_exports;

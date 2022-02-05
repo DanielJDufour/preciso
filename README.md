@@ -24,8 +24,18 @@ The following functions are supported:
 - [truncate](#truncate)
 
 ## install
+You typically want to install preciso using the [NPM CLI](https://docs.npmjs.com/cli/v8), [pnpm](https://pnpm.io/), [yarn](https://yarnpkg.com/), or something similar.
 ```bash
 npm install preciso
+```
+If you don't have access to a bundler, you can "install" preciso using an HTML script tag,
+which will set a global preciso variable.
+```html
+<script src="https://unpkg.com/preciso">
+<script>
+  console.log(preciso.abs("-10"));
+  // "10"
+</script>
 ```
 
 ### limitations

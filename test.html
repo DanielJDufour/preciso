@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://unpkg.com/flug"></script>
+    <script src="./preciso.min.js"></script>
+    <script>
+      window.require = mod => {
+        if (mod === "flug") return test;
+        if (mod.endsWith("preciso.js")) return preciso;
+      };
+    </script>
+    <script src="./test.js" type="module"></script>
+  </head>
+</html>

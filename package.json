@@ -19,12 +19,14 @@
     "min.js",
     "multiply.js",
     "preciso.js",
+    "preciso.min.js",
     "remainder.js",
     "round_last_decimal.js",
     "subtract.js",
     "truncate.js"
   ],
   "scripts": {
+    "build": "npx browserify preciso.js > preciso.min.js",
     "format": "npx prettier --arrow-parens=avoid --print-width=160 --trailing-comma=none --write *.js",
     "perf": "node perf.js",
     "prepublishOnly": "npx pkg-ok",

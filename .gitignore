@@ -103,6 +103,8 @@ dist
 # TernJS port file
 .tern-port
 
+# other
 *.old
 pnpm-lock.yaml
 *bak*
+preciso.min.js
