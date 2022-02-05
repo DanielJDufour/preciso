@@ -1,6 +1,6 @@
 const absolute = require("./absolute.js");
 const clean = require("./clean.js");
-const compare = require("./compare.js");
+const compare_positive = require("./compare_positive.js");
 const long_multiplication = require("./long_multiplication.js");
 
 module.exports = function multiply(a, b) {
@@ -15,7 +15,7 @@ module.exports = function multiply(a, b) {
   a = absolute(a);
   b = absolute(b);
 
-  const comparison = compare(a, b);
+  const comparison = compare_positive(a, b);
 
   if (comparison === "<") {
     const aold = a;

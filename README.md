@@ -14,6 +14,9 @@
 The following functions are supported:
 - [absolute](#absolute)
 - [add](#add)
+- [compare](#compare)
+- [max](#max)
+- [min](#min)
 - [multiply](#multiply)
 - [remainder](#remainder)
 - [subtract](#subtract)
@@ -41,6 +44,36 @@ import add from "preciso/add.js";
 
 add("0.1", "0.2"); // 0.1 + 0.2
 "0.3"
+```
+
+### compare
+```js
+import compare from "preciso/compare.js";
+
+compare("0.1", "0.2");
+"<"
+
+compare("0.1", "-0.2");
+">"
+
+compare("0.1", "+.1");
+"="
+```
+
+### max
+```js
+import max from "preciso/min.js";
+
+max("0.1", "0.2"); // or max(["0.1", "0.2"]);
+"0.2"
+```
+
+### min
+```js
+import min from "preciso/min.js";
+
+min("0.1", "0.2"); // or min(["0.1", "0.2"]);
+"0.1"
 ```
 
 ### multiply

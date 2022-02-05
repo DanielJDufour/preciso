@@ -1,5 +1,5 @@
 const clean = require("./clean");
-const compare = require("./compare.js");
+const compare_positive = require("./compare_positive.js");
 const long_addition = require("./long_addition.js");
 const long_subtraction = require("./long_subtraction.js");
 
@@ -11,7 +11,7 @@ module.exports = function subtract(a, b) {
   const b_is_positive = b[0] !== "-";
   if (a_is_positive) {
     if (b_is_positive) {
-      const comparison = compare(a, b);
+      const comparison = compare_positive(a, b);
       if (comparison === ">") {
         return long_subtraction(a, b);
       } else if (comparison === "<") {
@@ -27,7 +27,7 @@ module.exports = function subtract(a, b) {
   } else {
     a = a.substring(1);
     b = b.substring(1);
-    const comparison = compare(a, b);
+    const comparison = compare_positive(a, b);
     if (comparison === ">") {
       return "-" + long_subtraction(a, b);
     } else if (comparison === "<") {

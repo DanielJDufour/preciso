@@ -2,6 +2,7 @@ const test = require("flug");
 const Big = require("big.js");
 const preciso = require("./preciso.js");
 const add = require("./add.js");
+const compare = require("./compare.js");
 const divide = require("./divide.js");
 const multiply = require("./multiply.js");
 const remainder = require("./remainder.js");
@@ -40,6 +41,10 @@ function get_random_number() {
 
 const duration = {
   add: {
+    preciso: 0,
+    big: 0
+  },
+  compare: {
     preciso: 0,
     big: 0
   },
@@ -83,6 +88,10 @@ for (let i = 0; i < NUM_PASSES; i++) {
   duration.add.big += performance.now() - start;
 
   start = performance.now();
+  const compare_result_big = Big(astr).cmp(bstr);
+  duration.compare.big += performance.now() - start;
+
+  start = performance.now();
   const divide_result_big = Big(astr).div(bstr);
   duration.divide.big += performance.now() - start;
 
@@ -105,6 +114,10 @@ for (let i = 0; i < NUM_PASSES; i++) {
   duration.add.preciso += performance.now() - start;
 
   start = performance.now();
+  const compare_result_preciso = compare(astr, bstr);
+  duration.compare.preciso += performance.now() - start;
+
+  start = performance.now();
   const divide_result_preciso = divide(astr, bstr);
   duration.divide.preciso += performance.now() - start;
 
@@ -124,6 +137,11 @@ for (let i = 0; i < NUM_PASSES; i++) {
     throw new Error(`uh oh. add("${astr}", "${bstr}") returned \n"${add_result_preciso}", not \n"${expand(add_result_big.toString())}"`);
   }
 
+  const normalized_compare_result_big = compare_result_big === 1 ? ">" : compare_result_big === -1 ? "<" : "=";
+  if (normalized_compare_result_big !== compare_result_preciso) {
+    throw new Error(`uh oh. compare("${astr}", "${bstr}") returned \n"${compare_result_preciso}", not \n"${normalized_compare_result_big}"`);
+  }
+
   if (expand(divide_result_big.toString()) !== divide_result_preciso) {
     throw new Error(`uh oh. divide("${astr}", "${bstr}") returned \n"${divide_result_preciso}", not \n"${expand(divide_result_big.toString())}"`);
   }
@@ -141,6 +159,8 @@ for (let i = 0; i < NUM_PASSES; i++) {
   }
 }
 
-Object.keys(duration).sort().forEach(k => {
-  console.log(k, "%", duration[k].preciso / duration[k].big);
-});
+Object.keys(duration)
+  .sort()
+  .forEach(k => {
+    console.log(k, "%", duration[k].preciso / duration[k].big);
+  });

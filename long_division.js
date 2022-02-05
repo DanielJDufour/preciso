@@ -1,4 +1,4 @@
-const compare = require("./compare.js");
+const compare_positive = require("./compare_positive.js");
 const add = require("./add.js");
 const multiply = require("./multiply.js");
 const subtract = require("./subtract.js");
@@ -37,7 +37,7 @@ module.exports = function long_division(dividend, divisor, { max_decimal_digits 
 
     current += char;
 
-    comparison = compare(current, divisor);
+    comparison = compare_positive(current, divisor);
 
     if (comparison === ">") {
       // same as const times = Math.floor(current / divisor);
@@ -45,7 +45,7 @@ module.exports = function long_division(dividend, divisor, { max_decimal_digits 
       let times = 1;
       let product = add(divisor, divisor);
       let passed_product = divisor;
-      while (compare(product, current) !== ">") {
+      while (compare_positive(product, current) !== ">") {
         times++;
         passed_product = product;
         product = add(product, divisor);
@@ -111,7 +111,7 @@ module.exports = function long_division(dividend, divisor, { max_decimal_digits 
           previous[current] = 1;
         }
       }
-      const comparison = compare(current, divisor);
+      const comparison = compare_positive(current, divisor);
 
       if (comparison === ">") {
         // inside greater than outside
@@ -120,7 +120,7 @@ module.exports = function long_division(dividend, divisor, { max_decimal_digits 
         let times = 1;
         let product = add(divisor, divisor);
         let passed_product = divisor;
-        while (compare(product, current) !== ">") {
+        while (compare_positive(product, current) !== ">") {
           times++;
           passed_product = product;
           product = add(product, divisor);

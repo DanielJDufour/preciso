@@ -1,5 +1,8 @@
 const absolute = require("./absolute.js");
 const compare = require("./compare.js");
+const compare_positive = require("./compare_positive.js");
+const min = require("./min.js");
+const max = require("./max.js");
 const expand = require("./expand.js");
 
 const add = require("./add.js");
@@ -23,6 +26,10 @@ const truncate = require("./truncate.js");
 module.exports = {
   absolute,
   compare,
+  compare_positive,
+  min,
+  max,
+
   expand,
   add,
   long_addition,
