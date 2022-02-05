@@ -15,6 +15,7 @@ The following functions are supported:
 - [absolute](#absolute)
 - [add](#add)
 - [compare](#compare)
+- [divide](#divide)
 - [max](#max)
 - [min](#min)
 - [multiply](#multiply)
@@ -60,6 +61,15 @@ compare("0.1", "+.1");
 "="
 ```
 
+### divide
+```js
+import divide from "preciso/divide.js";
+
+divide("-714.7008086132632", "8135.725531"); // -714.7008086132632 / 8135.725531
+// default is 100 decimal places of precision
+'-0.0878472123832102762218908980055167989417759034280282678823325216230183564682007707223868489179001533'
+```
+
 ### max
 ```js
 import max from "preciso/min.js";
@@ -83,15 +93,6 @@ import multiply from "preciso/multiply.js";
 multiply("-714.7008086132632", "8135.725531"); // -714.7008086132632 * 8135.725531
 "-5814609.6156612701214627592"
 ``` 
-
-### divide
-```js
-import divide from "preciso/divide.js";
-
-divide("-714.7008086132632", "8135.725531"); // -714.7008086132632 / 8135.725531
-// default is 100 decimal places of precision
-'-0.0878472123832102762218908980055167989417759034280282678823325216230183564682007707223868489179001533'
-```
 
 #### remainder
 ```js
