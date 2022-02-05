@@ -31,7 +31,7 @@ npm install preciso
 If you don't have access to a bundler, you can "install" preciso using an HTML script tag,
 which will set a global preciso variable.
 ```html
-<script src="https://unpkg.com/preciso">
+<script src="https://unpkg.com/preciso"></script>
 <script>
   console.log(preciso.abs("-10"));
   // "10"
