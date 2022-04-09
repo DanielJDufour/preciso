@@ -11,6 +11,10 @@ module.exports = function clean(n) {
   n = n.replace(/^0+(?=\d)/, "");
 
   // remove extra zero at end
+  if (n.includes(".")) n = n.replace(/\.?0+$/, "");
+
+  // should improve this, so it identifies zero earlier
+  if (n === "") n = "0";
 
   return n;
 };
