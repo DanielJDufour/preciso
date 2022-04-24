@@ -6,6 +6,11 @@ module.exports = function (dividend, divisor, options) {
   dividend = clean(dividend);
   divisor = clean(divisor);
 
+  if (divisor === "0") throw new Error("[preciso] division by zero");
+
+  // sometimes dividend can be cleaned to ""
+  if (dividend === "" || dividend === "0") return "0";
+
   const dividend_is_positive = dividend[0] !== "-";
   const divisor_is_positive = divisor[0] !== "-";
 
