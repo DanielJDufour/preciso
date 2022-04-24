@@ -16,7 +16,6 @@ module.exports = function ceil(n) {
 
   // convert n to an absolute integer
   n = absolute(n).split(".")[0];
-  console.log({ n, nsign });
 
   if (nsign === "+") {
     // like 1.5 => 1 => 2
