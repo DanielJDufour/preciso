@@ -12,6 +12,7 @@
     "clean.js",
     "compare.js",
     "compare_positive.js",
+    "constants.js",
     "divide.js",
     "expand.js",
     "floor.js",
