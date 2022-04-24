@@ -34,8 +34,10 @@ module.exports = function compare_positive(a, b) {
 
   let i = 0;
   while (i < imax) {
-    const achar = a[i - aoffset] || "0";
-    const bchar = b[i - boffset] || "0";
+    const ai = i - aoffset;
+    const achar = ai === a_adjusted_dot_index ? "." : a[ai] || "0";
+    const bi = i - boffset;
+    const bchar = bi === b_adjusted_dot_index ? "." : b[bi] || "0";
     if (achar !== bchar) {
       if (achar > bchar) return ">";
       else if (achar < bchar) return "<";
