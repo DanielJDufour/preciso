@@ -14,12 +14,15 @@
 The following functions are supported:
 - [absolute](#absolute)
 - [add](#add)
+- [ceil](#ceil)
 - [compare](#compare)
 - [divide](#divide)
+- [floor](#floor)
 - [max](#max)
 - [min](#min)
 - [multiply](#multiply)
 - [remainder](#remainder)
+- [sign](#sign)
 - [subtract](#subtract)
 - [truncate](#truncate)
 
@@ -71,6 +74,18 @@ compare("0.1", "+.1");
 "="
 ```
 
+### ceil
+```js
+import ceil from "preciso/ceil.js";
+
+ceil(46);
+"46"
+
+ceil(-7.004);
+"-7"
+```
+
+
 ### divide
 ```js
 import divide from "preciso/divide.js";
@@ -78,6 +93,16 @@ import divide from "preciso/divide.js";
 divide("-714.7008086132632", "8135.725531"); // -714.7008086132632 / 8135.725531
 // default is 100 decimal places of precision
 '-0.0878472123832102762218908980055167989417759034280282678823325216230183564682007707223868489179001533'
+```
+
+### floor
+```js
+import floor from "preciso/floor.js";
+
+floor(45.95);
+"45"
+floor(-45.95);
+"-46"
 ```
 
 ### max
@@ -113,6 +138,20 @@ remainder("10", "3"); // 10 % 3
 
 remainder("-0.5", "2"); // -0.5 % 2
 "-0.5"
+```
+
+### sign
+```js
+import sign from "preciso/subtract.js";
+
+sign("13e451");
+"+"
+
+sign("-0.123");
+"-"
+
+sign("-0.00");
+""
 ```
 
 ### subtract

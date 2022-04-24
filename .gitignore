@@ -108,3 +108,4 @@ dist
 pnpm-lock.yaml
 *bak*
 preciso.min.js
+.*
