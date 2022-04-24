@@ -1,3 +1,5 @@
+const { MAX_SAFE_INTEGER_LENGTH } = require("./constants.js");
+
 const CHUNK_SIZE = 15;
 
 /**
@@ -13,24 +15,32 @@ module.exports = function long_multiplication(a, b) {
   const top_index_of_dot = a.indexOf(".");
   const bottom_index_of_dot = b.indexOf(".");
 
+  const a_num_integer_places = top_index_of_dot === -1 ? a.length : top_index_of_dot;
+  const b_num_integer_places = bottom_index_of_dot === -1 ? b.length : bottom_index_of_dot;
+  const max_total_num_integer_places = a_num_integer_places + b_num_integer_places;
+
   const a_num_decimal_places = top_index_of_dot === -1 ? 0 : a.length - 1 - top_index_of_dot;
   const b_num_decimal_places = bottom_index_of_dot === -1 ? 0 : b.length - 1 - bottom_index_of_dot;
 
   const out_num_decimal_places = a_num_decimal_places + b_num_decimal_places;
 
-  // remove decimals
-  a = a.replace(".", "");
-  b = b.replace(".", "");
+  if (out_num_decimal_places === 0 && max_total_num_integer_places < MAX_SAFE_INTEGER_LENGTH) {
+    return (Number(a) * Number(b)).toFixed(0);
+  }
 
-  const alen = a.length;
-  const blen = b.length;
+  // remove decimals
+  const aint = a.replace(".", "");
+  const bint = b.replace(".", "");
+
+  const alen = aint.length;
+  const blen = bint.length;
 
   const chunks = [];
   let i = alen;
   while (i >= 0) {
     const end = i;
     const start = (i -= CHUNK_SIZE);
-    const str = a.substring(start, end);
+    const str = aint.substring(start, end);
     chunks.push([Number(str), str.length]);
   }
 
@@ -39,7 +49,7 @@ module.exports = function long_multiplication(a, b) {
 
   // for each number in multiplier
   for (let i = 0, ireverse = blen - 1; ireverse >= 0; ireverse--, i++) {
-    const bstr = b[ireverse];
+    const bstr = bint[ireverse];
 
     const bnum = Number(bstr);
 
