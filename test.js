@@ -1,32 +1,65 @@
 const test = require("flug");
+const compare_positive = require("./compare_positive.js");
 const preciso = require("./preciso.js");
 
 const {
   absolute,
-
+  add,
+  ceil,
+  clean,
   compare,
+  divide,
+  floor,
+  is_zero,
   min,
   max,
   expand,
-
-  add,
   long_addition,
-
-  divide,
   long_division,
-
-  multiply,
   long_multiplication,
-
-  remainder,
-
-  round_last_decimal,
-
-  subtract,
   long_subtraction,
-
+  multiply,
+  remainder,
+  round_last_decimal,
+  sign,
+  subtract,
   truncate
 } = preciso;
+
+test("ceil", ({ eq }) => {
+  eq(ceil("-1.5"), "-1");
+  eq(ceil("0.00"), "0");
+  eq(ceil("-0.5"), "0");
+  eq(ceil("0.05"), "1");
+  eq(ceil("2"), "2");
+});
+
+test("floor", ({ eq }) => {
+  eq(floor("-1.5"), "-2");
+  eq(floor("0.00"), "0");
+  eq(floor("-0.5"), "-1");
+  eq(floor("0.05"), "0");
+  eq(floor("2"), "2");
+});
+
+test("is_zero", ({ eq }) => {
+  eq(is_zero("0"), true);
+  eq(is_zero("-0"), true);
+  eq(is_zero("+0"), true);
+  eq(is_zero("-0.1"), false);
+  eq(is_zero("0.00"), true);
+  eq(is_zero("0e123"), true);
+  eq(is_zero("10e123"), false);
+});
+
+test("sign", ({ eq }) => {
+  eq(sign("0"), "");
+  eq(sign("-0"), "");
+  eq(sign("+0"), "");
+  eq(sign("0.1"), "+");
+  eq(sign("-23.2"), "-");
+  eq(sign(".00"), "+");
+});
 
 test("compare", ({ eq }) => {
   eq(compare("0.1", "0.2"), "<");
@@ -43,6 +76,11 @@ test("compare", ({ eq }) => {
   eq(compare("0.200", "0.2"), "=");
   eq(compare("0.5827080957222082", "0.0000005045423379090863"), ">");
   eq(compare("-5340.364298370885", "-7218.188720429374"), ">");
+});
+
+test("clean", ({ eq }) => {
+  eq(clean(".00"), "0");
+  eq(clean("706584.00"), "706584");
 });
 
 test("min/max", ({ eq }) => {
@@ -63,11 +101,15 @@ test("truncate", ({ eq }) => {
 
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Remainder#remainder_with_positive_dividend
 test("remainder with positive dividend", ({ eq }) => {
+  eq(remainder("706584.00", "8290389568953.324"), "706584");
   eq(remainder("13", "5"), "3");
   eq(remainder("1", "-2"), "1");
   eq(remainder("1", "2"), "1");
   eq(remainder("2", "3"), "2");
   eq(remainder("5.5", "2"), "1.5");
+  eq(remainder(".11", "85.49520108642433"), "0.11");
+  eq(remainder("79065.7357630", "3900634200.57024"), "79065.735763");
+  eq(remainder("525950.950", "5"), "0.95");
 });
 
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Remainder#remainder_with_negative_dividend
@@ -125,6 +167,8 @@ test("long_division", ({ eq }) => {
 });
 
 test("divide", ({ eq }) => {
+  eq(divide(".00", "6"), "0");
+  eq(divide("0", "705681262278.03753950"), "0");
   eq(divide("100", "10"), "10");
   eq(divide("100", "10.0"), "10");
   eq(divide("100.0", "10.0"), "10");
@@ -156,6 +200,16 @@ test("divide", ({ eq }) => {
   eq(divide("-111", "-10"), "11.1");
 });
 
+test("divide by zero throws exception", ({ eq }) => {
+  let msg;
+  try {
+    divide("1231232", "0");
+  } catch (error) {
+    msg = error.message;
+  }
+  eq(msg.length > 10, true);
+});
+
 test("long_multiplication", ({ eq }) => {
   eq(long_multiplication("0.4", "0.2"), "0.08");
   eq(long_multiplication("4444", "333"), "1479852");
@@ -169,6 +223,8 @@ test("long_multiplication", ({ eq }) => {
 });
 
 test("multiply", ({ eq }) => {
+  eq(multiply("0745148275059136", "05931602"), "4419922998637321215872");
+  eq(multiply(".00", "24578404077715245"), "0");
   eq(multiply("955504.4475259942", "0"), "0");
   eq(multiply("0", "955504.4475259942"), "0");
   eq(multiply("+7147008", "+5"), "35735040");
@@ -257,6 +313,14 @@ test("-1 - 5", ({ eq }) => {
   eq(result, "-6");
 });
 
+test("subtract", ({ eq }) => {
+  eq(subtract("525950", "525950.95"), "-0.95");
+});
+
+test("long_subtraction", ({ eq }) => {
+  eq(long_subtraction("525950.95", "525950"), "0.95");
+});
+
 test("long_subtraction(100, 10) or 100 - 10", ({ eq }) => {
   eq(long_subtraction("100", "10"), "90");
 });
@@ -273,9 +337,13 @@ test("0.1 + 0.2", ({ eq }) => {
 });
 
 test("add", ({ eq }) => {
+  eq(add(".252387", "9823118903435"), "9823118903435.252387");
+  eq(add("3243.851", "1343"), "4586.851");
+  eq(add("4", "56520.7471155"), "56524.7471155");
   eq(add("7.609890885355359", "-47020050888.60273"), "-47020050880.992839114644641");
   eq(add("-960.7970488209392", "-8822029530.999756"), "-8822030491.7968048209392");
   eq(add("7.609890885355359", "-47020050888.60273", "-960.7970488209392"), "-47020050880.992839114644641");
+  eq(add(".13058", ".533167144426"), "0.663747144426");
 });
 
 test("83534564031027.53 + 54503799876882.016", ({ eq }) => {
@@ -291,6 +359,10 @@ test("-83534564031027.53 + -54503799876882.016", ({ eq }) => {
   const result = add(a, b);
   // same as -1 * (a + b)
   eq(result, "-138038363907909.546");
+});
+
+test("compare_positive", ({ eq }) => {
+  eq(compare_positive("525950", "525950.95"), "<");
 });
 
 // test random numbers
