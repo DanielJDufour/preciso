@@ -7,6 +7,8 @@
 //   })
 // });
 
+const { MAX_SAFE_INTEGER_LENGTH } = require("./constants.js");
+
 // assumes (1) both a and b are positive numbers
 // and (2) a is larger than b
 module.exports = function long_subtraction(a, b) {
@@ -27,6 +29,11 @@ module.exports = function long_subtraction(a, b) {
   // to line up the decimal with the first
   //        0.12345
   //    12345.0
+
+  // just use floating point arithmetic for small integers
+  if (aidx === -1 && bidx === -1 && alen < MAX_SAFE_INTEGER_LENGTH && blen < MAX_SAFE_INTEGER_LENGTH) {
+    return (Number(a) - Number(b)).toFixed();
+  }
 
   const offset = a_adjusted_dot_index - b_adjusted_dot_index;
   // console.log("offset:", offset);
