@@ -22,7 +22,10 @@ module.exports = function (dividend, divisor) {
   if (comparison === "=") return "0";
 
   // if dividend is less than the divisor, just return the dividend
-  if (comparison === "<") return sign + dividend;
+  if (comparison === "<") {
+    if (dividend[0] === ".") dividend = "0" + dividend;
+    return sign + dividend;
+  }
 
   // can use long_division because know that
   // dividend and divisor are positive numerical strings
