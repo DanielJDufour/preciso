@@ -1,7 +1,7 @@
-// assumes both numbers are positive integers
-module.exports = function long_addition(a, b) {
-  // assuming both positive for now
+const { MAX_SAFE_INTEGER_LENGTH } = require("./constants.js");
 
+// assumes both numbers are positive numbers
+module.exports = function long_addition(a, b) {
   const alen = a.length;
   const blen = b.length;
 
@@ -13,6 +13,11 @@ module.exports = function long_addition(a, b) {
   // like 123.
   const a_adjusted_dot_index = aidx === -1 ? alen : aidx;
   const b_adjusted_dot_index = bidx === -1 ? blen : bidx;
+
+  // just use floating point arithmetic for small integers
+  if (aidx === -1 && bidx === -1 && alen < MAX_SAFE_INTEGER_LENGTH && blen < MAX_SAFE_INTEGER_LENGTH) {
+    return (Number(a) + Number(b)).toFixed();
+  }
 
   // how much you need to shift the second number
   // to line up the decimal with the first
@@ -77,6 +82,8 @@ module.exports = function long_addition(a, b) {
   if (carried === 1) {
     result = carried + result;
   }
+
+  if (result[0] === ".") result = "0" + result;
 
   return result;
 };
