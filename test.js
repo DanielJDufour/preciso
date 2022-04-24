@@ -319,9 +319,6 @@ test("subtract", ({ eq }) => {
 
 test("long_subtraction", ({ eq }) => {
   eq(long_subtraction("525950.95", "525950"), "0.95");
-});
-
-test("long_subtraction(100, 10) or 100 - 10", ({ eq }) => {
   eq(long_subtraction("100", "10"), "90");
 });
 
