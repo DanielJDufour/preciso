@@ -3,7 +3,7 @@ const compare_positive = require("./compare_positive.js");
 const long_addition = require("./long_addition.js");
 const long_subtraction = require("./long_subtraction.js");
 
-module.exports = function subtract(a, b) {
+function subtract(a, b) {
   a = clean(a);
   b = clean(b);
 
@@ -36,4 +36,7 @@ module.exports = function subtract(a, b) {
       return "0";
     }
   }
-};
+}
+
+module.exports = subtract;
+module.exports.default = subtract;

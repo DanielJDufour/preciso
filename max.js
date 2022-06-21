@@ -1,7 +1,7 @@
 const clean = require("./clean.js");
 const compare = require("./compare.js");
 
-module.exports = function max(nums) {
+function max(nums) {
   // called like max(n1, n2, n3...)
   if (typeof nums === "string") nums = Array.prototype.slice.call(arguments);
   let result = clean(nums[0]);
@@ -13,4 +13,7 @@ module.exports = function max(nums) {
     }
   }
   return result;
-};
+}
+
+module.exports = max;
+module.exports.default = max;

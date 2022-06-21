@@ -8,7 +8,7 @@ const multiply = require("./multiply.js");
 const subtract = require("./subtract.js");
 const truncate = require("./truncate.js");
 
-module.exports = function (dividend, divisor) {
+function remainder(dividend, divisor) {
   // console.log("\n\nremainder");
   dividend = clean(dividend);
   divisor = clean(divisor);
@@ -36,4 +36,7 @@ module.exports = function (dividend, divisor) {
   const product = multiply(divisor, times);
 
   return sign + subtract(dividend, product);
-};
+}
+
+module.exports = remainder;
+module.exports.default = remainder;

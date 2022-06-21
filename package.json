@@ -5,6 +5,7 @@
   "main": "preciso.js",
   "unpkg": "preciso.min.js",
   "jsdelivr": "preciso.min.js",
+  "types": "preciso.d.ts",
   "files": [
     "absolute.js",
     "add.js",
@@ -25,6 +26,7 @@
     "min.js",
     "multiply.js",
     "preciso.js",
+    "preciso.d.ts",
     "preciso.min.js",
     "remainder.js",
     "round_last_decimal.js",
@@ -35,7 +37,8 @@
   ],
   "scripts": {
     "build": "npx browserify preciso.js > preciso.min.js",
-    "format": "npx prettier --arrow-parens=avoid --print-width=160 --trailing-comma=none --write *.js",
+    "f": "npm run format",
+    "format": "npx prettier --arrow-parens=avoid --print-width=160 --trailing-comma=none --write *.js *.ts",
     "perf": "node perf.js",
     "prepublishOnly": "npx pkg-ok",
     "test": "node test.js"

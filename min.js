@@ -1,7 +1,7 @@
 const clean = require("./clean.js");
 const compare = require("./compare.js");
 
-module.exports = function min(nums) {
+function min(nums) {
   // called like min(n1, n2, n3...)
   if (typeof nums === "string") nums = Array.prototype.slice.call(arguments);
   let result = clean(nums[0]);
@@ -13,4 +13,7 @@ module.exports = function min(nums) {
     }
   }
   return result;
-};
+}
+
+module.exports = min;
+module.exports.default = min;

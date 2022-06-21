@@ -1,6 +1,6 @@
 // convert exponential notation to normal string
 // not optimized yet and no support for big numbers
-module.exports = function expand(n) {
+function expand(n) {
   // remove + from beginning
   if (n[0] === "+") n = n.substring(1);
 
@@ -44,4 +44,7 @@ module.exports = function expand(n) {
     // shifting within the base
     return sign + base.substring(0, normshift) + "." + base.substring(normshift);
   }
-};
+}
+
+module.exports = expand;
+module.exports.default = expand;

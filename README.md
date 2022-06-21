@@ -9,6 +9,8 @@
 - import only what you need
 - tested on ten thousand random numbers
 - supports scientific exponential notation
+- supports CJS and ESM
+- supports TypeScript
 
 ## basic usage
 The following functions are supported:

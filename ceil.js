@@ -3,7 +3,7 @@ const clean = require("./clean.js");
 const long_addition = require("./long_addition.js");
 const sign = require("./sign.js");
 
-module.exports = function ceil(n) {
+function ceil(n) {
   n = clean(n);
 
   const idot = n.indexOf(".");
@@ -28,4 +28,7 @@ module.exports = function ceil(n) {
       return "-" + n;
     }
   }
-};
+}
+
+module.exports = ceil;
+module.exports.default = ceil;

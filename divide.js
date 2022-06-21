@@ -2,7 +2,7 @@ const absolute = require("./absolute.js");
 const clean = require("./clean.js");
 const long_division = require("./long_division.js");
 
-module.exports = function (dividend, divisor, options) {
+function divide(dividend, divisor, options) {
   dividend = clean(dividend);
   divisor = clean(divisor);
 
@@ -20,4 +20,7 @@ module.exports = function (dividend, divisor, options) {
   if (!divisor_is_positive) divisor = absolute(divisor);
 
   return out_sign + long_division(dividend, divisor, options);
-};
+}
+
+module.exports = divide;
+module.exports.default = divide;

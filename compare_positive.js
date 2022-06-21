@@ -3,7 +3,7 @@ const clean = require("./clean.js");
 // given:
 //  - a and b are positive numbers
 //  - a and b have been cleaned (i.e. no + or leading zeros)
-module.exports = function compare_positive(a, b) {
+function compare_positive(a, b) {
   const alen = a.length;
   const blen = b.length;
 
@@ -46,4 +46,7 @@ module.exports = function compare_positive(a, b) {
   }
 
   return "=";
-};
+}
+
+module.exports = compare_positive;
+module.exports.default = compare_positive;

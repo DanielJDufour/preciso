@@ -1,7 +1,7 @@
 const clean = require("./clean.js");
 const compare_positive = require("./compare_positive.js");
 
-module.exports = function compare(a, b) {
+function compare(a, b) {
   a = clean(a);
   b = clean(b);
 
@@ -19,4 +19,7 @@ module.exports = function compare(a, b) {
   } else {
     return compare_positive(b.substring(1), a.substring(1));
   }
-};
+}
+
+module.exports = compare;
+module.exports.default = compare;

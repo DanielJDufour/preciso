@@ -3,7 +3,7 @@ const clean = require("./clean.js");
 const long_addition = require("./long_addition.js");
 const sign = require("./sign.js");
 
-module.exports = function floor(n) {
+function floor(n) {
   n = clean(n);
 
   const idot = n.indexOf(".");
@@ -29,4 +29,7 @@ module.exports = function floor(n) {
       return "-" + long_addition(n, "1");
     }
   }
-};
+}
+
+module.exports = floor;
+module.exports.default = floor;

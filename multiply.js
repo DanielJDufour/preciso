@@ -3,7 +3,7 @@ const clean = require("./clean.js");
 const compare_positive = require("./compare_positive.js");
 const long_multiplication = require("./long_multiplication.js");
 
-module.exports = function multiply(a, b) {
+function multiply(a, b) {
   a = clean(a);
   b = clean(b);
 
@@ -25,4 +25,7 @@ module.exports = function multiply(a, b) {
   }
 
   return out_sign + long_multiplication(a, b);
-};
+}
+
+module.exports = multiply;
+module.exports.default = multiply;
