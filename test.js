@@ -1,5 +1,4 @@
 const test = require("flug");
-const compare_positive = require("./compare_positive.js");
 const preciso = require("./preciso.js");
 
 const {
@@ -8,6 +7,7 @@ const {
   ceil,
   clean,
   compare,
+  compare_positive,
   divide,
   floor,
   is_infinity,
