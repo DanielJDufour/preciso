@@ -13,6 +13,7 @@ export function max(nums: string[]): string;
 export function min(nums: string[]): string;
 
 export function multiply(a: string, b: string): string;
+export function pow(base: string, exponent: string, options: { ellipsis?: boolean; max_decimal_digits?: number; zero_to_the_power_of_zero?: string }): string;
 export function remainder(dividend: string, divisor: string): string;
 export function sign(n: string): string;
 export function subtract(a: string, b: string): string;

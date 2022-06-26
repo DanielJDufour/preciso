@@ -10,6 +10,8 @@ const {
   compare,
   divide,
   floor,
+  is_infinity,
+  is_integer,
   is_zero,
   min,
   max,
@@ -19,12 +21,56 @@ const {
   long_multiplication,
   long_subtraction,
   multiply,
+  pow,
+  pow_positive,
   remainder,
   round_last_decimal,
   sign,
   subtract,
   truncate
 } = preciso;
+
+test("is_infinity", ({ eq }) => {
+  eq(is_infinity("-inf"), true);
+  eq(is_infinity("inf"), true);
+  eq(is_infinity("Infinity"), true);
+  eq(is_infinity("infinity"), true);
+  eq(is_infinity("+Infinity"), true);
+  eq(is_infinity("-Infinity"), true);
+});
+
+test("is_integer", ({ eq }) => {
+  eq(is_integer("0"), true);
+  eq(is_integer("-0.213123"), false);
+  eq(is_integer("+12386123"), true);
+  eq(is_integer("Infinity"), false);
+  eq(is_integer("0.5e123"), true);
+});
+
+test("pow_positive", ({ eq }) => {
+  eq(pow_positive("7", "2"), "49");
+  eq(pow_positive("7", "3"), "343");
+});
+
+test("pow", ({ eq }) => {
+  // examples from https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/pow
+  eq(pow("7", "2"), "49");
+  eq(pow("7", "3"), "343");
+  eq(pow("2", "10"), "1024");
+  // eq(pow("4", "0.5"), "2");
+  // eq(pow("8", "1/3"), "2");
+  // eq(pow("2", "0.5"), "1.4142135623730951...");
+  // eq(pow("2", "1/3"), "1.2599210498948732");
+  eq(
+    pow("7", "-2", { ellipsis: true, max_decimal_digits: 100000 }),
+    "0.020408163265306122448979591836734693877551020408163265306122448979591836734693877551020408163265306122448979591836734693877551..."
+  );
+  // eq(pow("8", "-1/3"), "0.5");
+  eq(pow("-7", "2"), "49");
+  eq(pow("-7", "3"), "-343");
+  // Math.pow(-7, 0.5); => NaN?
+  // Math.pow(-7, 1/3)  => NaN?
+});
 
 test("ceil", ({ eq }) => {
   eq(ceil("-1.5"), "-1");
@@ -81,6 +127,7 @@ test("compare", ({ eq }) => {
 test("clean", ({ eq }) => {
   eq(clean(".00"), "0");
   eq(clean("706584.00"), "706584");
+  eq(clean("-3.4028234663852886e+038"), "-340282346638528860000000000000000000000");
 });
 
 test("min/max", ({ eq }) => {
@@ -198,6 +245,10 @@ test("divide", ({ eq }) => {
   eq(divide("10", "1"), "10");
   eq(divide("-3630", "15"), "-242");
   eq(divide("-111", "-10"), "11.1");
+  eq(
+    divide("1", "49", { max_decimal_digits: Infinity, ellipsis: true }),
+    "0.020408163265306122448979591836734693877551020408163265306122448979591836734693877551020408163265306122448979591836734693877551..."
+  );
 });
 
 test("divide by zero throws exception", ({ eq }) => {

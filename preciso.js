@@ -7,6 +7,8 @@ const constants = require("./constants.js");
 
 const floor = require("./floor.js");
 
+const is_infinity = require("./is_infinity.js");
+const is_integer = require("./is_integer.js");
 const is_zero = require("./is_zero.js");
 
 const min = require("./min.js");
@@ -29,6 +31,9 @@ const long_subtraction = require("./long_subtraction.js");
 const multiply = require("./multiply.js");
 const long_multiplication = require("./long_multiplication.js");
 
+const pow = require("./pow.js");
+const pow_positive = require("./pow_positive.js");
+
 const sign = require("./sign.js");
 const sign_nonzero = require("./sign_nonzero.js");
 
@@ -46,6 +51,8 @@ const module_exports = {
 
   floor,
 
+  is_infinity,
+  is_integer,
   is_zero,
 
   min,
@@ -60,6 +67,9 @@ const module_exports = {
 
   multiply,
   long_multiplication,
+
+  pow,
+  pow_positive,
 
   remainder,
 
