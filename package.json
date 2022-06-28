@@ -25,6 +25,7 @@
     "long_multiplication.js",
     "long_subtraction.js",
     "max.js",
+    "mean.js",
     "min.js",
     "multiply.js",
     "pow.js",
@@ -36,10 +37,13 @@
     "round_last_decimal.js",
     "sign.js",
     "sign_nonzero.js",
+    "sort.js",
     "subtract.js",
+    "sum.js",
     "truncate.js"
   ],
   "scripts": {
+    "b": "npm run build",
     "build": "npx browserify preciso.js > preciso.min.js",
     "f": "npm run format",
     "format": "npx prettier --arrow-parens=avoid --print-width=160 --trailing-comma=none --write *.js *.ts",

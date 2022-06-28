@@ -13,6 +13,7 @@ const {
   is_infinity,
   is_integer,
   is_zero,
+  mean,
   min,
   max,
   expand,
@@ -26,9 +27,31 @@ const {
   remainder,
   round_last_decimal,
   sign,
+  sort,
+  sum,
   subtract,
   truncate
 } = preciso;
+
+test("sort", ({ eq }) => {
+  eq(sort(["1", "2", "3"]), ["1", "2", "3"]);
+  eq(sort(["1", "2", "3"], { direction: "descending" }), ["3", "2", "1"]);
+  const nums = ["0", "-10", "-10.213", "12e34", "-1e-424", "3123761254357621"];
+  eq(sort(nums), ["-10.213", "-10", "-1e-424", "0", "3123761254357621", "12e34"]);
+  eq(sort(nums, { direction: "descending" }), ["12e34", "3123761254357621", "0", "-1e-424", "-10", "-10.213"]);
+});
+
+test("sum", ({ eq }) => {
+  eq(sum(["1", "2", "3"]), "6");
+  eq(sum(["1", "2", "8"]), "11");
+});
+
+test("mean", ({ eq }) => {
+  eq(mean(["1", "10", "4"]), "5");
+  eq(mean(["-1", "2", "8"], { ellipsis: true }), "3");
+  eq(mean(["1", "2", "8"], { max_decimal_digits: 3 }), "3.667");
+  eq(mean(["1", "2", "8"], { ellipsis: true }), "3.666...");
+});
 
 test("is_infinity", ({ eq }) => {
   eq(is_infinity("-inf"), true);

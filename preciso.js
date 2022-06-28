@@ -11,6 +11,7 @@ const is_infinity = require("./is_infinity.js");
 const is_integer = require("./is_integer.js");
 const is_zero = require("./is_zero.js");
 
+const mean = require("./mean.js");
 const min = require("./min.js");
 const max = require("./max.js");
 const expand = require("./expand.js");
@@ -37,6 +38,10 @@ const pow_positive = require("./pow_positive.js");
 const sign = require("./sign.js");
 const sign_nonzero = require("./sign_nonzero.js");
 
+const sort = require("./sort.js");
+
+const sum = require("./sum.js");
+
 const truncate = require("./truncate.js");
 
 const module_exports = {
@@ -55,6 +60,7 @@ const module_exports = {
   is_integer,
   is_zero,
 
+  mean,
   min,
   max,
 
@@ -77,6 +83,10 @@ const module_exports = {
 
   sign,
   sign_nonzero,
+
+  sort,
+
+  sum,
 
   subtract,
   long_subtraction,

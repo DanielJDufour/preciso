@@ -21,12 +21,15 @@ The following functions are supported:
 - [divide](#divide)
 - [floor](#floor)
 - [max](#max)
+- [mean](#mean)
 - [min](#min)
 - [multiply](#multiply)
 - [pow](#pow)
 - [remainder](#remainder)
 - [sign](#sign)
+- [sort](#sort)
 - [subtract](#subtract)
+- [sum](#sum)
 - [truncate](#truncate)
 
 ## install
@@ -56,6 +59,7 @@ abs("-10");
 ```
 
 ### add
+Add two numbers together.
 ```js
 import add from "preciso/add.js";
 
@@ -106,6 +110,20 @@ floor("45.9523663245126542371265437612538671523854172437561258367152356412734512
 "45"
 floor("-45.95126753876125376512437641236512473654126345126534712653476152437651243");
 "-46"
+```
+
+### mean
+```js
+import mean from "preciso/mean.js";
+
+mean(["1", "10", "4"])
+"5"
+
+mean(["1", "2", "8"], { max_decimal_digits: 3 })
+"3.667"
+
+mean(["1", "2", "8"], { ellipsis: true })
+"3.666..."
 ```
 
 ### max
@@ -173,12 +191,34 @@ sign("-0.00");
 ""
 ```
 
+### sort
+```js
+import sort from "preciso/sort.js"
+
+// default is sorting in ascending order (smallest to greatest)
+sort(["1", "2", "3"])
+["1", "2", "3"]
+
+// sort in descending order from greatest to smallest
+sort(["1", "2", "3"], { direction: "descending" })
+["3", "2", "1"]
+```
+
 ### subtract
 ```js
 import subtract from "preciso/subtract.js";
 
 subtract("10", "2.14"); // 10 - 2.14
 "7.86"
+```
+
+### sum
+Similar to add, but can take an array of more than two numbers.
+```js
+import sum from "preciso/sum.js";
+
+sum(["1", "2", "3"])
+"6"
 ```
 
 ### truncate
