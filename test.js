@@ -394,6 +394,7 @@ test("subtract", ({ eq }) => {
 test("long_subtraction", ({ eq }) => {
   eq(long_subtraction("525950.95", "525950"), "0.95");
   eq(long_subtraction("100", "10"), "90");
+  eq(long_subtraction("0.351562500000000006", "0"), "0.351562500000000006");
 });
 
 test("-10 + 20.5", ({ eq }) => {
@@ -434,6 +435,7 @@ test("-83534564031027.53 + -54503799876882.016", ({ eq }) => {
 
 test("compare_positive", ({ eq }) => {
   eq(compare_positive("525950", "525950.95"), "<");
+  eq(compare_positive("0.351562500000000006", "0"), ">");
 });
 
 // test random numbers
