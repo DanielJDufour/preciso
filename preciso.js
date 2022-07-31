@@ -8,6 +8,7 @@ const constants = require("./constants.js");
 const floor = require("./floor.js");
 
 const is_infinity = require("./is_infinity.js");
+const is_positive_infinity = require("./is_positive_infinity.js");
 const is_negative_infinity = require("./is_negative_infinity.js");
 const is_integer = require("./is_integer.js");
 const is_zero = require("./is_zero.js");
@@ -58,6 +59,7 @@ const module_exports = {
   floor,
 
   is_infinity,
+  is_positive_infinity,
   is_negative_infinity,
   is_integer,
   is_zero,

@@ -11,6 +11,7 @@ const {
   divide,
   floor,
   is_infinity,
+  is_positive_infinity,
   is_negative_infinity,
   is_integer,
   is_zero,
@@ -61,6 +62,15 @@ test("is_negative_infinity", ({ eq }) => {
   eq(is_negative_infinity("infinity"), false);
   eq(is_negative_infinity("+Infinity"), false);
   eq(is_negative_infinity("-Infinity"), true);
+});
+
+test("is_positive_infinity", ({ eq }) => {
+  eq(is_positive_infinity("-inf"), false);
+  eq(is_positive_infinity("inf"), true);
+  eq(is_positive_infinity("Infinity"), true);
+  eq(is_positive_infinity("infinity"), true);
+  eq(is_positive_infinity("+Infinity"), true);
+  eq(is_positive_infinity("-Infinity"), false);
 });
 
 test("is_infinity", ({ eq }) => {
