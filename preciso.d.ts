@@ -2,7 +2,6 @@ export function absolute(n: string): string;
 export function add(a: string, b: string): string;
 export function ceil(n: string): string;
 export function compare(a: string, b: string): "<" | ">" | "=";
-export function ceil(n: string): string;
 export function divide(dividend: string, divisor: string, options?: { max_decimal_digits: number; ellipsis: boolean }): string;
 export function floor(n: string): string;
 
@@ -18,3 +17,21 @@ export function remainder(dividend: string, divisor: string): string;
 export function sign(n: string): string;
 export function subtract(a: string, b: string): string;
 export function truncate(n: string);
+
+declare const preciso: {
+  absolute: typeof absolute;
+  add: typeof add;
+  ceil: typeof ceil;
+  compare: typeof compare;
+  divide: typeof divide;
+  floor: typeof floor;
+  max: typeof max;
+  min: typeof min;
+  multiply: typeof multiply;
+  pow: typeof pow;
+  remainder: typeof remainder;
+  sign: typeof sign;
+  subtract: typeof subtract;
+  truncate: typeof truncate;
+};
+export default preciso;

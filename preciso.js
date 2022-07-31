@@ -102,6 +102,9 @@ if (typeof define === "function" && define.amd)
   define(function () {
     return module_exports;
   });
-if (typeof module === "object") module.exports = module_exports;
+if (typeof module === "object") {
+  module.exports = module_exports;
+  module.exports.default = module_exports;
+}
 if (typeof window === "object") window.preciso = module_exports;
 if (typeof self === "object") self.preciso = module_exports;

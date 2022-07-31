@@ -51,7 +51,9 @@
     "format": "npx prettier --arrow-parens=avoid --print-width=160 --trailing-comma=none --write *.js *.ts",
     "perf": "node perf.js",
     "prepublishOnly": "npx pkg-ok",
-    "test": "node test.js"
+    "test": "npm run test:js && npm run test:ts",
+    "test:js": "node test.js",
+    "test:ts": "npx ts-node ./test.ts"
   },
   "repository": {
     "type": "git",
