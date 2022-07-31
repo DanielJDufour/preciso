@@ -11,6 +11,7 @@ const {
   divide,
   floor,
   is_infinity,
+  is_negative_infinity,
   is_integer,
   is_zero,
   mean,
@@ -51,6 +52,15 @@ test("mean", ({ eq }) => {
   eq(mean(["-1", "2", "8"], { ellipsis: true }), "3");
   eq(mean(["1", "2", "8"], { max_decimal_digits: 3 }), "3.667");
   eq(mean(["1", "2", "8"], { ellipsis: true }), "3.666...");
+});
+
+test("is_negative_infinity", ({ eq }) => {
+  eq(is_negative_infinity("-inf"), true);
+  eq(is_negative_infinity("inf"), false);
+  eq(is_negative_infinity("Infinity"), false);
+  eq(is_negative_infinity("infinity"), false);
+  eq(is_negative_infinity("+Infinity"), false);
+  eq(is_negative_infinity("-Infinity"), true);
 });
 
 test("is_infinity", ({ eq }) => {

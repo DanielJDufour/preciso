@@ -18,6 +18,7 @@
     "expand.js",
     "floor.js",
     "is_infinity.js",
+    "is_negative_infinity.js",
     "is_integer.js",
     "is_zero.js",
     "long_addition.js",
