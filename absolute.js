@@ -1,3 +1,5 @@
+"use strict";
+
 const clean = require("./clean.js");
 
 function absolute(n) {

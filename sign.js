@@ -1,3 +1,5 @@
+"use strict";
+
 const is_zero = require("./is_zero.js");
 const sign_nonzero = require("./sign_nonzero.js");
 

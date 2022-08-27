@@ -1,3 +1,5 @@
+"use strict";
+
 const clean = require("./clean.js");
 const compare = require("./compare.js");
 

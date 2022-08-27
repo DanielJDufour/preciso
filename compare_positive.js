@@ -1,4 +1,4 @@
-const clean = require("./clean.js");
+"use strict";
 
 // given:
 //  - a and b are positive numbers

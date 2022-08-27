@@ -1,3 +1,5 @@
+"use strict";
+
 const compare_positive = require("./compare_positive.js");
 const clean = require("./clean.js");
 const long_addition = require("./long_addition.js");

@@ -1,3 +1,5 @@
+"use strict";
+
 // const lookup = {};
 // const vals = [undefined, 0, 1, 2, 3, 4, 5, 6, 8, 9];
 // vals.forEach(top => {
@@ -11,7 +13,7 @@ const { MAX_SAFE_INTEGER_LENGTH } = require("./constants.js");
 
 // assumes (1) both a and b are positive numbers
 // and (2) a is larger than b
-module.exports = function long_subtraction(a, b) {
+function long_subtraction(a, b) {
   const alen = a.length;
   const blen = b.length;
 
@@ -141,4 +143,7 @@ module.exports = function long_subtraction(a, b) {
   if (result[0] === ".") result = "0" + result;
 
   return result;
-};
+}
+
+module.exports = long_subtraction;
+module.exports.default = long_subtraction;

@@ -1,11 +1,12 @@
+"use strict";
+
 const compare_positive = require("./compare_positive.js");
 const add = require("./add.js");
-const multiply = require("./multiply.js");
 const subtract = require("./subtract.js");
 const round_last_decimal = require("./round_last_decimal.js");
 
 // given dividend and divisor are positive numberical strings
-module.exports = function long_division(dividend, divisor, { max_decimal_digits = 100, ellipsis = false } = {}) {
+function long_division(dividend, divisor, { max_decimal_digits = 100, ellipsis = false } = {}) {
   // remove unnecessary starting zeros
   // ex: 0.5 => .5
   if (dividend[0] === "0") dividend = dividend.substring(1);
@@ -195,4 +196,7 @@ module.exports = function long_division(dividend, divisor, { max_decimal_digits 
   if (quotient[0] === ".") quotient = "0" + quotient;
 
   return quotient;
-};
+}
+
+module.exports = long_division;
+module.exports.default = long_division;

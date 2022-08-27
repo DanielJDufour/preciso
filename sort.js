@@ -1,3 +1,5 @@
+"use strict";
+
 const compare = require("./compare");
 
 function sort(nums, { direction = "ascending" } = { direction: "ascending" }) {

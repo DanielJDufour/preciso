@@ -1,7 +1,9 @@
+"use strict";
+
 const { MAX_SAFE_INTEGER_LENGTH } = require("./constants.js");
 
 // assumes both numbers are positive numbers
-module.exports = function long_addition(a, b) {
+function long_addition(a, b) {
   const alen = a.length;
   const blen = b.length;
 
@@ -86,4 +88,7 @@ module.exports = function long_addition(a, b) {
   if (result[0] === ".") result = "0" + result;
 
   return result;
-};
+}
+
+module.exports = long_addition;
+module.exports.default = long_addition;

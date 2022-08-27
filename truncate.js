@@ -1,3 +1,5 @@
+"use strict";
+
 function truncate(n) {
   const i = n.indexOf(".");
   if (i === -1) return n;

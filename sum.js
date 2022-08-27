@@ -1,3 +1,5 @@
+"use strict";
+
 const add = require("./add.js");
 
 function sum(nums) {

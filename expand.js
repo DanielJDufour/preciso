@@ -1,3 +1,5 @@
+"use strict";
+
 // convert exponential notation to normal string
 // not optimized yet and no support for big numbers
 function expand(n) {
@@ -36,7 +38,7 @@ function expand(n) {
     return sign + result;
   } else if (normshift < 0) {
     // need to add zeros in decimal places
-    result = "0.";
+    let result = "0.";
     for (let i = 0; i > normshift; i--) result += "0";
     result += base;
     return sign + result;

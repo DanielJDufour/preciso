@@ -1,3 +1,5 @@
+"use strict";
+
 const expand = require("./expand.js");
 
 module.exports = function clean(n) {
@@ -15,6 +17,8 @@ module.exports = function clean(n) {
 
   // should improve this, so it identifies zero earlier
   if (n === "") n = "0";
+
+  if (n === "-0") n = "0";
 
   return n;
 };

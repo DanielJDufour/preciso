@@ -1,15 +1,20 @@
+"use strict";
 const test = require("flug");
 const preciso = require("./preciso.js");
 
 const {
   absolute,
   add,
+  binomial_coefficient,
   ceil,
   clean,
   compare,
   compare_positive,
+  count_decimal_digits,
   divide,
+  factorial,
   floor,
+  is_factorial,
   is_infinity,
   is_positive_infinity,
   is_negative_infinity,
@@ -24,9 +29,11 @@ const {
   long_multiplication,
   long_subtraction,
   multiply,
+  multiply_range,
   pow,
   pow_positive,
   remainder,
+  round,
   round_last_decimal,
   sign,
   sort,
@@ -34,6 +41,81 @@ const {
   subtract,
   truncate
 } = preciso;
+
+test("count_decimal_digits", ({ eq }) => {
+  eq(count_decimal_digits("-0.123"), "3");
+  eq(count_decimal_digits("0"), "0");
+  eq(count_decimal_digits("0.1"), "1");
+  eq(count_decimal_digits("0.123"), "3");
+});
+
+test("round_decimal", ({ eq }) => {
+  eq(round_last_decimal("0.99"), "1");
+  eq(round_last_decimal("+0.4"), "0");
+  eq(round_last_decimal("0.4"), "0");
+  eq(round_last_decimal("0.5"), "1");
+  eq(round_last_decimal("0.545"), "0.55");
+  eq(round_last_decimal("0.544"), "0.54");
+  eq(round_last_decimal("0.49"), "0.5");
+  eq(round_last_decimal("0.499"), "0.5");
+  eq(round_last_decimal("0.88"), "0.9");
+  eq(round_last_decimal("0.89"), "0.9");
+  eq(round_last_decimal("0.89"), "0.9");
+  eq(round_last_decimal("0.9"), "1");
+});
+
+test("round", ({ eq }) => {
+  eq(round("0.12345"), "0");
+  eq(round("0"), "0");
+  eq(round("-0"), "0");
+  eq(round("-.99"), "-1");
+  eq(round(".99"), "1");
+  eq(round("0.99"), "1");
+  eq(round("213.123123123"), "213");
+  eq(round("-13.123123123"), "-13");
+  eq(round("0.12345", { digits: 2 }), "0.12");
+  eq(round("0.123456"), "0");
+  eq(round("0.123456", { digits: 3 }), "0.123");
+  eq(round("0.123456", { digits: 4 }), "0.1235");
+  eq(round("0.987654", { digits: 100 }), "0.987654");
+  eq(round("0.987654", { digits: 4 }), "0.9877");
+});
+
+test("binomial_coefficient", ({ eq }) => {
+  eq(binomial_coefficient("2", "1"), "2");
+  eq(binomial_coefficient("3", "0"), "1");
+  eq(binomial_coefficient("3", "1"), "3");
+  eq(binomial_coefficient("3", "2"), "3");
+  eq(binomial_coefficient("3", "3"), "1");
+  eq(binomial_coefficient("6", "4"), "15");
+  eq(binomial_coefficient("7", "2"), "21");
+  eq(binomial_coefficient("7", "3"), "35");
+  eq(binomial_coefficient("8", "5"), "56");
+  eq(binomial_coefficient("50", "3"), "19600");
+});
+
+test("multiply_range", ({ eq }) => {
+  eq(multiply_range("0", "1"), "0");
+  eq(multiply_range("1", "1"), "1");
+  eq(multiply_range("1", "2"), "2");
+  eq(multiply_range("1", "3"), "6");
+  eq(multiply_range("1", "3", "0.5"), "22.5"); // 1 * 1.5 * 2 * 2.5 * 3
+});
+
+test("is_factorial", ({ eq }) => {
+  eq(is_factorial("1"), false);
+  eq(is_factorial("1!"), true);
+  eq(is_factorial("0.1"), false);
+});
+
+test("factorial", ({ eq }) => {
+  eq(factorial("1"), "1");
+  eq(factorial("2"), "2");
+  eq(factorial("2"), "2");
+  eq(factorial("3"), "6");
+  eq(factorial("4"), "24");
+  eq(factorial("10"), "3628800");
+});
 
 test("sort", ({ eq }) => {
   eq(sort(["1", "2", "3"]), ["1", "2", "3"]);
@@ -209,16 +291,6 @@ test("remainder with negative dividend", ({ eq }) => {
   eq(remainder("-4", "2"), "-0");
 });
 
-test("round_decimal", ({ eq }) => {
-  eq(round_last_decimal("+0.4"), "0");
-  eq(round_last_decimal("0.4"), "0");
-  eq(round_last_decimal("0.5"), "1");
-  eq(round_last_decimal("0.545"), "0.55");
-  eq(round_last_decimal("0.544"), "0.54");
-  eq(round_last_decimal("0.49"), "0.5");
-  eq(round_last_decimal("0.499"), "0.5");
-});
-
 test("long_division", ({ eq }) => {
   eq(long_division("2", "20.5", { max_decimal_digits: 3 }), "0.098");
   eq(long_division("24", "20.4", { max_decimal_digits: 3 }), "1.176");
@@ -292,6 +364,9 @@ test("divide", ({ eq }) => {
     divide("1", "49", { max_decimal_digits: Infinity, ellipsis: true }),
     "0.020408163265306122448979591836734693877551020408163265306122448979591836734693877551020408163265306122448979591836734693877551..."
   );
+
+  // Generally, 1/(10ⁿ-1)² gives all of n-digit numbers 0 to 10²ⁿ-1, except for 10²ⁿ-2.
+  // const result = divide("1", "998,001");
 });
 
 test("divide by zero throws exception", ({ eq }) => {
@@ -377,6 +452,11 @@ test("expand", ({ eq }) => {
     expand("-7.0957785648399024755535458291091456514990305749706184102834950392700045391509013462894856975e-9"),
     "-0.0000000070957785648399024755535458291091456514990305749706184102834950392700045391509013462894856975"
   );
+  eq(expand("41.3861"), "41.3861");
+  eq(expand("34.4282"), "34.4282");
+  eq(expand("4.4296"), "4.4296");
+  eq(expand("-4.2367"), "-4.2367");
+  eq(expand("-7.081154551613622e-10"), "-0.0000000007081154551613622");
 });
 
 test("simple", ({ eq }) => {

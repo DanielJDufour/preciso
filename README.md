@@ -16,9 +16,11 @@
 The following functions are supported:
 - [absolute](#absolute)
 - [add](#add)
+- [binomial_coefficient](#binomial_coefficient)
 - [ceil](#ceil)
 - [compare](#compare)
 - [divide](#divide)
+- [factorial](#factorial)
 - [floor](#floor)
 - [max](#max)
 - [mean](#mean)
@@ -26,6 +28,7 @@ The following functions are supported:
 - [multiply](#multiply)
 - [pow](#pow)
 - [remainder](#remainder)
+- [round](#round)
 - [sign](#sign)
 - [sort](#sort)
 - [subtract](#subtract)
@@ -67,6 +70,15 @@ add("0.1", "0.2"); // 0.1 + 0.2
 "0.3"
 ```
 
+### binomial_coefficient
+```js
+import binomial_coefficient from "preciso/binomial_coefficient.js";
+
+// 7 choose 3
+binomial_coefficient("7", "3")
+"35"
+```
+
 ### compare
 ```js
 import compare from "preciso/compare.js";
@@ -100,6 +112,20 @@ import divide from "preciso/divide.js";
 divide("-714.7008086132632", "8135.725531"); // -714.7008086132632 / 8135.725531
 // default is 100 decimal places of precision
 '-0.0878472123832102762218908980055167989417759034280282678823325216230183564682007707223868489179001533'
+```
+
+### factorial
+```js
+import factorial from "preciso/factorial.js";
+
+factorial("0");
+"1"
+
+factorial("3");
+"6"
+
+factorial("10");
+"3628800"
 ```
 
 ### floor
@@ -175,6 +201,21 @@ remainder("10", "3"); // 10 % 3
 
 remainder("-0.5", "2"); // -0.5 % 2
 "-0.5"
+```
+
+### round
+```js
+import round from "preciso/round.js";
+
+round("0.99")
+"1"
+
+round("0.12345");
+"0"
+
+// round to the specified number of digits
+round("0.12345", { digits: 2 })
+"0.12"
 ```
 
 ### sign

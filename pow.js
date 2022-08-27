@@ -1,3 +1,5 @@
+"use strict";
+
 const absolute = require("./absolute.js");
 const clean = require("./clean.js");
 const divide = require("./divide.js");

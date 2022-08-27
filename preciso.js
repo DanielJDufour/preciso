@@ -1,13 +1,17 @@
 const absolute = require("./absolute.js");
+const binomial_coefficient = require("./binomial_coefficient.js");
 const ceil = require("./ceil.js");
 const clean = require("./clean.js");
 const compare = require("./compare.js");
 const compare_positive = require("./compare_positive.js");
 const constants = require("./constants.js");
+const count_decimal_digits = require("./count_decimal_digits.js");
 
+const factorial = require("./factorial.js");
 const floor = require("./floor.js");
 
 const is_infinity = require("./is_infinity.js");
+const is_factorial = require("./is_factorial.js");
 const is_positive_infinity = require("./is_positive_infinity.js");
 const is_negative_infinity = require("./is_negative_infinity.js");
 const is_integer = require("./is_integer.js");
@@ -33,9 +37,12 @@ const long_subtraction = require("./long_subtraction.js");
 
 const multiply = require("./multiply.js");
 const long_multiplication = require("./long_multiplication.js");
+const multiply_range = require("./multiply_range.js");
 
 const pow = require("./pow.js");
 const pow_positive = require("./pow_positive.js");
+
+const round = require("./round.js");
 
 const sign = require("./sign.js");
 const sign_nonzero = require("./sign_nonzero.js");
@@ -48,6 +55,7 @@ const truncate = require("./truncate.js");
 
 const module_exports = {
   absolute,
+  binomial_coefficient,
   ceil,
   clean,
 
@@ -55,10 +63,13 @@ const module_exports = {
   compare_positive,
 
   constants,
+  count_decimal_digits,
 
+  factorial,
   floor,
 
   is_infinity,
+  is_factorial,
   is_positive_infinity,
   is_negative_infinity,
   is_integer,
@@ -76,6 +87,7 @@ const module_exports = {
   long_division,
 
   multiply,
+  multiply_range,
   long_multiplication,
 
   pow,
@@ -83,6 +95,7 @@ const module_exports = {
 
   remainder,
 
+  round,
   round_last_decimal,
 
   sign,

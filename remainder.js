@@ -1,8 +1,8 @@
+"use strict";
+
 const absolute = require("./absolute.js");
-const add = require("./add.js");
 const clean = require("./clean.js");
 const compare_positive = require("./compare_positive.js");
-const divide = require("./divide.js");
 const long_division = require("./long_division.js");
 const multiply = require("./multiply.js");
 const subtract = require("./subtract.js");

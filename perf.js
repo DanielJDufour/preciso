@@ -1,4 +1,5 @@
-const test = require("flug");
+"use strict";
+
 const Big = require("big.js");
 const preciso = require("./preciso.js");
 const add = require("./add.js");

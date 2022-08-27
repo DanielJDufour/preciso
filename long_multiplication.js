@@ -1,3 +1,5 @@
+"use strict";
+
 const { MAX_SAFE_INTEGER_LENGTH } = require("./constants.js");
 
 const CHUNK_SIZE = 15;
@@ -9,7 +11,7 @@ const CHUNK_SIZE = 15;
  * @returns {String} product - result of multiplying a with b
  */
 
-module.exports = function long_multiplication(a, b) {
+function long_multiplication(a, b) {
   if (a === "0" || b === "0") return "0";
 
   const top_index_of_dot = a.indexOf(".");
@@ -132,4 +134,7 @@ module.exports = function long_multiplication(a, b) {
   }
 
   return result;
-};
+}
+
+module.exports = long_multiplication;
+module.exports.default = long_multiplication;

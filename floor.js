@@ -1,3 +1,5 @@
+"use strict";
+
 const absolute = require("./absolute.js");
 const clean = require("./clean.js");
 const long_addition = require("./long_addition.js");

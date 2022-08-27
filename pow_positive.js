@@ -1,3 +1,5 @@
+"use strict";
+
 const multiply = require("./multiply.js");
 
 // assuming:

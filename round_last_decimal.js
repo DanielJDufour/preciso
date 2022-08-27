@@ -1,6 +1,17 @@
-// given n is a decimal number
+"use strict";
+
+const add = require("./add.js");
+const truncate_decimal = require("./truncate_decimal.js");
+
+// given n is a positive decimal number
 const up = ["5", "6", "7", "8", "9"];
-module.exports = function round_last_decimal(n) {
+
+function round_last_decimal(n) {
+  // will round up to an integer
+  if (n.match(/\.9+$/)) {
+    return add(truncate_decimal(n), "1");
+  }
+
   // remove + from beginning
   if (n[0] === "+") n = n.substring(1);
 
@@ -44,4 +55,7 @@ module.exports = function round_last_decimal(n) {
   if (result.indexOf(".") > -1) result = result.replace(/0+$/, "");
 
   return result;
-};
+}
+
+module.exports = round_last_decimal;
+module.exports.default = round_last_decimal;
