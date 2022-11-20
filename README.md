@@ -114,6 +114,20 @@ divide("-714.7008086132632", "8135.725531"); // -714.7008086132632 / 8135.725531
 '-0.0878472123832102762218908980055167989417759034280282678823325216230183564682007707223868489179001533'
 ```
 
+### exp
+Raise [Euler's Number](https://en.wikipedia.org/wiki/E_(mathematical_constant)) to the given power
+```js
+import exp from "preciso/exp.js";
+
+exp("-Infinity") // "0"
+exp("-1") // "0.3678794411714423..."
+exp("0") // "1"
+exp("1") // "2.718281828459045..."
+exp("2") // "7.389056098930650..."
+exp("10") // "22026.46579480671..."
+exp("Infinity") // "Infinity"
+```
+
 ### factorial
 ```js
 import factorial from "preciso/factorial.js";
