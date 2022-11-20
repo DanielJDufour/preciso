@@ -174,6 +174,10 @@ import multiply from "preciso/multiply.js";
 
 multiply("-714.7008086132632", "8135.725531"); // -714.7008086132632 * 8135.725531
 "-5814609.6156612701214627592"
+
+// pass in an array of numerical strings
+multiply(["2", "3", "4"]);
+"24"
 ``` 
 
 ### pow (power)

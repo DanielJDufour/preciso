@@ -5,28 +5,27 @@ const clean = require("./clean.js");
 const compare_positive = require("./compare_positive.js");
 const long_multiplication = require("./long_multiplication.js");
 
-function multiply(a, b) {
-  a = clean(a);
-  b = clean(b);
+function multiply() {
+  const nums = Array.isArray(arguments[0]) ? arguments[0] : arguments;
 
-  const apos = a[0] !== "-";
-  const bpos = b[0] !== "-";
+  let product = clean(nums[0]);
+  let product_absolute = absolute(product);
+  let product_sign = product[0] === "-" ? "-" : "";
 
-  const out_sign = apos !== bpos ? "-" : "";
+  const imax = nums.length;
+  for (let i = 1; i < imax; i++) {
+    const current = clean(nums[i]);
+    const current_sign = current[0] === "-" ? "-" : "";
+    const current_absolute = absolute(current);
+    product_sign = product_sign !== current_sign ? "-" : "";
 
-  a = absolute(a);
-  b = absolute(b);
+    const comparison = compare_positive(product_absolute, current_absolute);
 
-  const comparison = compare_positive(a, b);
+    product_absolute = comparison === "<" ? long_multiplication(current_absolute, product_absolute) : long_multiplication(product_absolute, current_absolute);
 
-  if (comparison === "<") {
-    const aold = a;
-    const bold = b;
-    a = bold;
-    b = aold;
+    product = product_sign + product_absolute;
   }
-
-  return out_sign + long_multiplication(a, b);
+  return product;
 }
 
 module.exports = multiply;
