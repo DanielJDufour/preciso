@@ -7,6 +7,7 @@ const is_integer = require("./is_integer");
 const is_zero = require("./is_zero.js");
 const multiply = require("./multiply.js");
 const pow_positive = require("./pow_positive.js");
+const round = require("./round.js");
 const sign = require("./sign");
 
 function pow(
@@ -59,6 +60,9 @@ function pow(
     let product = base;
     for (let i = 1; i < imax; i++) {
       product = multiply(product, base);
+    }
+    if (typeof max_decimal_digits === "number") {
+      product = round(product, { digits: max_decimal_digits });
     }
     return product;
   }
