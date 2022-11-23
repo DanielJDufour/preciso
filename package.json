@@ -19,6 +19,7 @@
     "count_integer_digits.js",
     "cube_root.js",
     "divide.js",
+    "eulers_number.js",
     "expand.js",
     "factorial.js",
     "floor.js",
