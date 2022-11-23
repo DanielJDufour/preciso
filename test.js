@@ -10,10 +10,16 @@ const {
   clean,
   compare,
   compare_positive,
+  constants,
   count_decimal_digits,
+  count_integer_digits,
+  cube_root,
   divide,
+  eulers_number,
+  exp,
   factorial,
   floor,
+  // gregory_leibniz,
   is_factorial,
   is_infinity,
   is_positive_infinity,
@@ -23,6 +29,7 @@ const {
   mean,
   min,
   max,
+  nilakantha,
   expand,
   long_addition,
   long_division,
@@ -33,14 +40,134 @@ const {
   pow,
   pow_positive,
   remainder,
+  root,
+  root_integer_digits,
   round,
   round_last_decimal,
   sign,
   sort,
+  square_root,
   sum,
   subtract,
   truncate
 } = preciso;
+
+// const nthroot = (radicand, root) => Math.pow(radicand, 1 / root);
+
+test("root", ({ eq }) => {
+  eq(root("-9", "1"), "-9");
+  eq(root("-9", "2"), "3i");
+  eq(root("-2", "2", { max_decimal_digits: 4 }), "1.4142i");
+  eq(root("-1", "2"), "1i");
+  eq(root("-0.25", "2"), "0.5i");
+  eq(root("-0.25", "1"), "-0.25");
+  eq(root("-0", "2"), "0");
+  eq(root("0", "2"), "0");
+  eq(root("0.25", "1"), "0.25");
+  eq(root("0.5", "3", { max_decimal_digits: 5 }), "0.79370");
+  eq(root("1", "2"), "1");
+  eq(root("1", "12345678"), "1");
+  eq(root("4", "2"), "2");
+  eq(root("4", "3", { max_decimal_digits: 4 }), "1.5874");
+  eq(root("9", "2"), "3");
+});
+
+test("count_integer_digits", ({ eq }) => {
+  eq(count_integer_digits("-12.123"), "2");
+  eq(count_integer_digits("0"), "1");
+  eq(count_integer_digits("0.1"), "1");
+  eq(count_integer_digits("123.456"), "3");
+});
+
+test("exp", ({ eq }) => {
+  eq(exp("-Infinity"), "0");
+  eq(exp("-1").substring(0, 18), "0.3678794411714423");
+  eq(exp("0"), "1");
+  eq(exp("1").substring(0, 17), "2.718281828459045");
+  eq(exp("2").substring(0, 17), "7.389056098930650");
+  eq(exp("10").substring(0, 17), "22026.46579480671");
+  eq(exp("Infinity"), "Infinity");
+});
+
+test("multiply", ({ eq }) => {
+  eq(multiply("2", "3", "4"), "24");
+  eq(multiply(["2", "3", "4"]), "24");
+  eq(multiply("0745148275059136", "05931602"), "4419922998637321215872");
+  eq(multiply(".00", "24578404077715245"), "0");
+  eq(multiply("955504.4475259942", "0"), "0");
+  eq(multiply("0", "955504.4475259942"), "0");
+  eq(multiply("+7147008", "+5"), "35735040");
+  eq(multiply("+.20", ".200"), "0.04");
+  eq(multiply("+.20", ".2"), "0.04");
+  eq(multiply("+.2", ".2"), "0.04");
+  eq(multiply("7147008", "5"), "35735040");
+  eq(multiply("714700808", "5"), "3573504040");
+  eq(multiply("8086", "5"), "40430");
+  eq(multiply("700", "5"), "3500");
+  eq(multiply("70002", "5"), "350010");
+  eq(multiply("7008086", "5"), "35040430");
+
+  //                                      3573540430663160
+  eq(multiply("7147008086132632", "5"), "35735040430663160");
+  eq(multiply("-714.7008086132632", "8135.725531"), "-5814609.6156612701214627592");
+  //                                       46456025598621080
+  eq(multiply("7147008086132632", "65"), "464555525598621080");
+
+  //                                        689693303117989880
+  eq(multiply("7147008086132632", "965"), "6896862803117989880");
+
+  //                                          52148675504667493880
+  eq(multiply("7147008086132632", "72965"), "521481445004667493880");
+
+  //                                                     574138808602597364871508483493880
+  eq(multiply("7147008086132632", "81357255313072965"), "581460961588089517849678483493880");
+
+  // "-5741388.08602597364871508483493880"
+  eq(multiply("-714.7008086132632", "8135.7255313072965"), "-5814609.6158808951784967848349388");
+  eq(multiply("-21754.237655475372", "-699.4316097056533"), "15215601.4612884766884040073205276");
+  eq(multiply("9", "-21754.237655475372"), "-195788.138899278348");
+  eq(multiply("1286735.32", "-943722"), "-1214320429661.04");
+  eq(multiply("-21754.237655475372", "9"), "-195788.138899278348");
+  eq(multiply("-21754.237655475372", "999"), "-21732483.417819896628");
+  eq(multiply("999", "-21754.237655475372"), "-21732483.417819896628");
+  eq(multiply("-21754.237655475372", "-699.4316097056533"), "15215601.4612884766884040073205276");
+  eq(multiply("-699.4316097056533", "-21754.237655475372"), "15215601.4612884766884040073205276");
+});
+
+// test("gregory_leibniz", ({ eq }) => {
+//   eq(gregory_leibniz(1), "3");
+//   eq(gregory_leibniz(2).substring(0, 12), "3.1666666666");
+//   eq(gregory_leibniz(3).substring(0, 12), "3.1333333333");
+//   eq(gregory_leibniz(4).substring(0, 12), "3.1452380952");
+
+//   let start = performance.now();
+//   eq(gregory_leibniz(1_000_000).substring(0, 12), "3.1415926535");
+//   const duration = performance.now() - start;
+//   console.log("d:", duration);
+//   eq(duration < 2000, true);
+// });
+
+test("nilakantha", ({ eq }) => {
+  eq(nilakantha(1), "3");
+  eq(nilakantha(2).substring(0, 12), "3.1666666666");
+  eq(nilakantha(3).substring(0, 12), "3.1333333333");
+  eq(nilakantha(4).substring(0, 12), "3.1452380952");
+  // Math.PI = 3.141592653589793
+  // first 10 decimal digits of PI
+  let start = performance.now();
+  eq(nilakantha(3000).substring(0, 12), "3.1415926535");
+  const duration = performance.now() - start;
+  eq(duration < 2000, true);
+});
+
+test("eulers_number", ({ eq }) => {
+  eq(eulers_number({ steps: 1 }), "1");
+  eq(eulers_number({ steps: 2 }), "2");
+  eq(eulers_number({ steps: 3 }), "2.5");
+  eq(eulers_number({ max_decimal_digits: 10, steps: 4 }).split(".")[1].length, 10);
+  eq(eulers_number({ max_decimal_digits: 10, steps: 10 }), "2.7182815256");
+  eq(Number(eulers_number(10_000).substring(0, 17)), Math.E);
+});
 
 test("count_decimal_digits", ({ eq }) => {
   eq(count_decimal_digits("-0.123"), "3");
@@ -179,6 +306,7 @@ test("pow_positive", ({ eq }) => {
 
 test("pow", ({ eq }) => {
   // examples from https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/pow
+  eq(pow("7.2", "2", { max_decimal_digits: 0 }), "52");
   eq(pow("7", "2"), "49");
   eq(pow("7", "3"), "343");
   eq(pow("2", "10"), "1024");
@@ -389,49 +517,6 @@ test("long_multiplication", ({ eq }) => {
   eq(long_multiplication("21754.237655475372", "7056533"), "153509495905.704593205276");
   eq(long_multiplication("21754.237655475372", "97056533"), "2111390884898.488073205276");
   eq(long_multiplication("21754.237655475372", "6994316097056533"), "152156014612884766884.040073205276");
-});
-
-test("multiply", ({ eq }) => {
-  eq(multiply("0745148275059136", "05931602"), "4419922998637321215872");
-  eq(multiply(".00", "24578404077715245"), "0");
-  eq(multiply("955504.4475259942", "0"), "0");
-  eq(multiply("0", "955504.4475259942"), "0");
-  eq(multiply("+7147008", "+5"), "35735040");
-  eq(multiply("+.20", ".200"), "0.04");
-  eq(multiply("+.20", ".2"), "0.04");
-  eq(multiply("+.2", ".2"), "0.04");
-  eq(multiply("7147008", "5"), "35735040");
-  eq(multiply("714700808", "5"), "3573504040");
-  eq(multiply("8086", "5"), "40430");
-  eq(multiply("700", "5"), "3500");
-  eq(multiply("70002", "5"), "350010");
-  eq(multiply("7008086", "5"), "35040430");
-
-  //                                      3573540430663160
-  eq(multiply("7147008086132632", "5"), "35735040430663160");
-  eq(multiply("-714.7008086132632", "8135.725531"), "-5814609.6156612701214627592");
-  //                                       46456025598621080
-  eq(multiply("7147008086132632", "65"), "464555525598621080");
-
-  //                                        689693303117989880
-  eq(multiply("7147008086132632", "965"), "6896862803117989880");
-
-  //                                          52148675504667493880
-  eq(multiply("7147008086132632", "72965"), "521481445004667493880");
-
-  //                                                     574138808602597364871508483493880
-  eq(multiply("7147008086132632", "81357255313072965"), "581460961588089517849678483493880");
-
-  // "-5741388.08602597364871508483493880"
-  eq(multiply("-714.7008086132632", "8135.7255313072965"), "-5814609.6158808951784967848349388");
-  eq(multiply("-21754.237655475372", "-699.4316097056533"), "15215601.4612884766884040073205276");
-  eq(multiply("9", "-21754.237655475372"), "-195788.138899278348");
-  eq(multiply("1286735.32", "-943722"), "-1214320429661.04");
-  eq(multiply("-21754.237655475372", "9"), "-195788.138899278348");
-  eq(multiply("-21754.237655475372", "999"), "-21732483.417819896628");
-  eq(multiply("999", "-21754.237655475372"), "-21732483.417819896628");
-  eq(multiply("-21754.237655475372", "-699.4316097056533"), "15215601.4612884766884040073205276");
-  eq(multiply("-699.4316097056533", "-21754.237655475372"), "15215601.4612884766884040073205276");
 });
 
 test("absolute", ({ eq }) => {
