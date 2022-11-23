@@ -19,6 +19,7 @@ The following functions are supported:
 - [binomial_coefficient](#binomial_coefficient)
 - [ceil](#ceil)
 - [compare](#compare)
+- [cube_root](#cube_root)
 - [divide](#divide)
 - [factorial](#factorial)
 - [floor](#floor)
@@ -29,8 +30,10 @@ The following functions are supported:
 - [pow](#pow)
 - [remainder](#remainder)
 - [round](#round)
+- [root](#root)
 - [sign](#sign)
 - [sort](#sort)
+- [square_root](#square_root)
 - [subtract](#subtract)
 - [sum](#sum)
 - [truncate](#truncate)
@@ -104,6 +107,12 @@ ceil(-7.000000000000000000000000000000000000004);
 "-7"
 ```
 
+### cube root
+```js
+import cube_root from "preciso/cube_root.js";
+
+cube_root("8"); // "2"
+```
 
 ### divide
 ```js
@@ -112,6 +121,18 @@ import divide from "preciso/divide.js";
 divide("-714.7008086132632", "8135.725531"); // -714.7008086132632 / 8135.725531
 // default is 100 decimal places of precision
 '-0.0878472123832102762218908980055167989417759034280282678823325216230183564682007707223868489179001533'
+```
+
+### euler's number
+Calculate [Euler's Number](https://en.wikipedia.org/wiki/E_(mathematical_constant)), also known as **_e_**.
+```js
+import e from "preciso/eulers_number.js";
+
+e();
+'2.7182818284590452353602874713526624977572470936999595749669676277240766303535475945713821785251664274'
+
+e({ max_decimal_digits: 10 });
+'2.7182818286'
 ```
 
 ### exp
@@ -221,6 +242,22 @@ remainder("-0.5", "2"); // -0.5 % 2
 "-0.5"
 ```
 
+### root
+Find the n-th root of a number
+```js
+import root from "preciso/root.js";
+
+// 4th root of 4096
+root("4096", "4"); // 8
+
+// 7th root of 1024
+root("1024", "7", { max_decimal_digits: 50 })
+'2.69180038526471226388566520750188380873249405355495'
+
+// imaginary number
+root("-4", "2"); // "-2i"
+```
+
 ### round
 ```js
 import round from "preciso/round.js";
@@ -262,6 +299,16 @@ sort(["1", "2", "3"])
 sort(["1", "2", "3"], { direction: "descending" })
 ["3", "2", "1"]
 ```
+
+### square root
+```js
+import square_root from "preciso/square_root.js";
+
+square_root("0.25"); // "0.5"
+square_root("16"); // "4"
+square_root("-49"); // "7i"
+```
+
 
 ### subtract
 ```js
