@@ -4,6 +4,15 @@ const absolute = require("./absolute.js");
 const clean = require("./clean.js");
 const long_division = require("./long_division.js");
 
+/**
+ * @name divide
+ * @param {String} dividend
+ * @param {String} divisor
+ * @param {Object} options
+ * @param {Number} options.max_decimal_digits
+ * @param {Boolean} options.ellipsis
+ * @returns {String} - quotient
+ */
 function divide(dividend, divisor, options) {
   dividend = clean(dividend);
   divisor = clean(divisor);
