@@ -45,6 +45,7 @@ const {
   round,
   round_last_decimal,
   sign,
+  softmax,
   sort,
   square_root,
   sum,
@@ -53,6 +54,12 @@ const {
 } = preciso;
 
 // const nthroot = (radicand, root) => Math.pow(radicand, 1 / root);
+
+test("softmax", ({ eq }) => {
+  const actual = ["1", "2", "3", "4", "1", "2", "3"];
+  const expected = ["0.02364054", "0.06426166", "0.1746813", "0.474833", "0.02364054", "0.06426166", "0.1746813"];
+  eq(softmax(actual, { max_decimal_digits: 8 }), expected);
+});
 
 test("root", ({ eq }) => {
   eq(root("-9", "1"), "-9");

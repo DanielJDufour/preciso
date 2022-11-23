@@ -32,6 +32,7 @@ The following functions are supported:
 - [round](#round)
 - [root](#root)
 - [sign](#sign)
+- [softmax](#softmax)
 - [sort](#sort)
 - [square_root](#square_root)
 - [subtract](#subtract)
@@ -298,6 +299,16 @@ sort(["1", "2", "3"])
 // sort in descending order from greatest to smallest
 sort(["1", "2", "3"], { direction: "descending" })
 ["3", "2", "1"]
+```
+
+### softmax
+Calculate the [softmax function](https://en.wikipedia.org/wiki/Softmax_function)
+```js
+import softmax from "preciso/softmax.js";
+
+// example data from https://en.wikipedia.org/wiki/Softmax_function
+softmax(["1", "2", "3", "4", "1", "2", "3"], { max_decimal_digits: 8 });
+["0.02364054", "0.06426166", "0.1746813", "0.474833", "0.02364054", "0.06426166", "0.1746813"]
 ```
 
 ### square root

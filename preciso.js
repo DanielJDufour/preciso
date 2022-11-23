@@ -44,6 +44,8 @@ const root = require("./root.js");
 const root_integer_digits = require("./root_integer_digits.js");
 const round_last_decimal = require("./round_last_decimal.js");
 
+const softmax = require("./softmax.js");
+
 const square_root = require("./square_root.js");
 const subtract = require("./subtract.js");
 const long_subtraction = require("./long_subtraction.js");
@@ -128,6 +130,7 @@ const module_exports = {
   sign,
   sign_nonzero,
 
+  softmax,
   sort,
 
   sum,

@@ -56,6 +56,7 @@
     "round_last_decimal.js",
     "sign.js",
     "sign_nonzero.js",
+    "softmax.js",
     "sort.js",
     "square_root.js",
     "subtract.js",
