@@ -76,7 +76,7 @@ function pow(
 
   if (!exponent_is_integer) {
     // eq(pow("2", "1/3"), "1.2599210498948732"
-    throw new Error("[preciso] we don't support ");
+    throw new Error("[preciso] we don't support fractional exponents");
   }
 }
 
