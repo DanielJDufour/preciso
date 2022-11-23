@@ -4,8 +4,12 @@ const ceil = require("./ceil.js");
 const clean = require("./clean.js");
 const compare = require("./compare.js");
 const compare_positive = require("./compare_positive.js");
-const constants = require("./constants.js");
+const constants = require("./constants/index.js");
 const count_decimal_digits = require("./count_decimal_digits.js");
+const count_integer_digits = require("./count_integer_digits.js");
+const cube_root = require("./cube_root.js");
+
+const eulers_number = require("./eulers_number.js");
 
 const factorial = require("./factorial.js");
 const floor = require("./floor.js");
@@ -28,10 +32,19 @@ const long_addition = require("./long_addition.js");
 const divide = require("./divide.js");
 const long_division = require("./long_division.js");
 
+const exp = require("./exp.js");
+
+// pi
+const nilakantha = require("./nilakantha.js");
+// const gregory_leibniz = require("./gregory_leibniz.js");
+
 const remainder = require("./remainder.js");
 
+const root = require("./root.js");
+const root_integer_digits = require("./root_integer_digits.js");
 const round_last_decimal = require("./round_last_decimal.js");
 
+const square_root = require("./square_root.js");
 const subtract = require("./subtract.js");
 const long_subtraction = require("./long_subtraction.js");
 
@@ -64,9 +77,14 @@ const module_exports = {
 
   constants,
   count_decimal_digits,
+  count_integer_digits,
+
+  exp,
 
   factorial,
   floor,
+
+  // gregory_leibniz,
 
   is_infinity,
   is_factorial,
@@ -86,14 +104,23 @@ const module_exports = {
   divide,
   long_division,
 
+  eulers_number,
+
   multiply,
   multiply_range,
   long_multiplication,
+
+  nilakantha,
 
   pow,
   pow_positive,
 
   remainder,
+
+  root,
+  root_integer_digits,
+  cube_root,
+  square_root,
 
   round,
   round_last_decimal,
