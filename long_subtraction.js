@@ -9,7 +9,7 @@
 //   })
 // });
 
-const { MAX_SAFE_INTEGER_LENGTH } = require("./constants.js");
+const { MAX_SAFE_INTEGER_LENGTH } = require("./constants/max_safe_integer_length.js");
 
 // assumes (1) both a and b are positive numbers
 // and (2) a is larger than b

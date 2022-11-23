@@ -1,6 +1,6 @@
 "use strict";
 
-const { MAX_SAFE_INTEGER_LENGTH } = require("./constants.js");
+const { MAX_SAFE_INTEGER_LENGTH } = require("./constants/max_safe_integer_length.js");
 
 // assumes both numbers are positive numbers
 function long_addition(a, b) {
