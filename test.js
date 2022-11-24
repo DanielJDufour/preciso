@@ -18,6 +18,7 @@ const {
   eulers_number,
   exp,
   factorial,
+  fraction,
   floor,
   // gregory_leibniz,
   is_factorial,
@@ -37,6 +38,7 @@ const {
   long_subtraction,
   multiply,
   multiply_range,
+  primes,
   pow,
   pow_positive,
   remainder,
@@ -44,6 +46,7 @@ const {
   root_integer_digits,
   round,
   round_last_decimal,
+  simplify_fraction,
   sign,
   softmax,
   sort,
@@ -54,6 +57,61 @@ const {
 } = preciso;
 
 // const nthroot = (radicand, root) => Math.pow(radicand, 1 / root);
+
+test("primes", ({ eq }) => {
+  const results1 = primes("0", "10");
+  eq(results1, ["2", "3", "5", "7"]);
+
+  const results2 = primes("0", "100");
+  eq(results2, [
+    "2",
+    "3",
+    "5",
+    "7",
+    "11",
+    "13",
+    "17",
+    "19",
+    "23",
+    "29",
+    "31",
+    "37",
+    "41",
+    "43",
+    "47",
+    "53",
+    "59",
+    "61",
+    "67",
+    "71",
+    "73",
+    "79",
+    "83",
+    "89",
+    "97"
+  ]);
+
+  const start = performance.now();
+  const results3 = primes("0", "1000");
+  const duration = performance.now() - start;
+  eq(duration < 1000, true);
+  eq(results3.length, 192);
+});
+
+test("simplify_fraction", ({ eq }) => {
+  eq(simplify_fraction("10", "100"), ["1", "10"]);
+  eq(simplify_fraction("4", "10"), ["2", "5"]);
+  eq(simplify_fraction("11", "22"), ["1", "2"]);
+  eq(simplify_fraction("1234", "22"), ["617", "11"]);
+  eq(simplify_fraction("57142635", "4125"), ["346319", "25"]);
+});
+
+test("fraction", ({ eq }) => {
+  eq(fraction(".1"), ["1", "10"]);
+  eq(fraction("0.25"), ["25", "100"]);
+  eq(fraction("0.12345678"), ["12345678", "100000000"]);
+  eq(fraction("12345678.9"), ["123456789", "10"]);
+});
 
 test("softmax", ({ eq }) => {
   const actual = ["1", "2", "3", "4", "1", "2", "3"];
