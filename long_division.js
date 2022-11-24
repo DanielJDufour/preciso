@@ -6,7 +6,7 @@ const subtract = require("./subtract.js");
 const round_last_decimal = require("./round_last_decimal.js");
 
 // given dividend and divisor are positive numberical strings
-function long_division(dividend, divisor, { max_decimal_digits = 100, ellipsis = false } = {}) {
+function long_division(dividend, divisor, { format = "string", max_decimal_digits = 100, ellipsis = false } = {}) {
   // remove unnecessary starting zeros
   // ex: 0.5 => .5
   if (dividend[0] === "0") dividend = dividend.substring(1);
@@ -185,9 +185,10 @@ function long_division(dividend, divisor, { max_decimal_digits = 100, ellipsis =
   // remove extra zeros from the end
   quotient = quotient.replace(/\.\d+0+$/, "");
 
+  const extra_decimals = num_decimals - max_decimal_digits;
+
   // round if necessary
   if (!repeating) {
-    const extra_decimals = num_decimals - max_decimal_digits;
     if (extra_decimals > 0) {
       quotient = round_last_decimal(quotient.substring(0, quotient.length - extra_decimals + 1));
     }
@@ -195,7 +196,11 @@ function long_division(dividend, divisor, { max_decimal_digits = 100, ellipsis =
 
   if (quotient[0] === ".") quotient = "0" + quotient;
 
-  return quotient;
+  if (format === "object") {
+    return { quotient, extra_decimals };
+  } else {
+    return quotient;
+  }
 }
 
 module.exports = long_division;
