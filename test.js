@@ -121,20 +121,23 @@ test("softmax", ({ eq }) => {
 
 test("root", ({ eq }) => {
   eq(root("-9", "1"), "-9");
-  eq(root("-9", "2"), "3i");
-  eq(root("-2", "2", { max_decimal_digits: 4 }), "1.4142i");
-  eq(root("-1", "2"), "1i");
-  eq(root("-0.25", "2"), "0.5i");
   eq(root("-0.25", "1"), "-0.25");
-  eq(root("-0", "2"), "0");
-  eq(root("0", "2"), "0");
   eq(root("0.25", "1"), "0.25");
   eq(root("0.5", "3", { max_decimal_digits: 5 }), "0.79370");
-  eq(root("1", "2"), "1");
   eq(root("1", "12345678"), "1");
-  eq(root("4", "2"), "2");
   eq(root("4", "3", { max_decimal_digits: 4 }), "1.5874");
-  eq(root("9", "2"), "3");
+});
+
+test("square_root", ({ eq }) => {
+  eq(square_root("-9"), "3i");
+  eq(square_root("-2", { max_decimal_digits: 4 }), "1.4142i");
+  eq(square_root("-1"), "1i");
+  eq(square_root("-0.25"), "0.5i");
+  eq(square_root("-0"), "0");
+  eq(square_root("0"), "0");
+  eq(square_root("1"), "1");
+  eq(square_root("4"), "2");
+  eq(square_root("9"), "3");
 });
 
 test("count_integer_digits", ({ eq }) => {

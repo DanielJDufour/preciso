@@ -74,7 +74,7 @@
     "build:pi": "node build_pi.js",
     "check:files": "npx pkg-ok --field=files",
     "f": "npm run format",
-    "lint": "npx eslint *.js",
+    "lint": "npx eslint *.js --ignore-pattern=*min* --ignore-pattern=perf.js",
     "format": "npx prettier --arrow-parens=avoid --print-width=160 --trailing-comma=none --write *.js *.ts",
     "perf": "node perf.js",
     "prepublishOnly": "npm run check:files",

@@ -1,3 +1,4 @@
+/* global define */
 const absolute = require("./absolute.js");
 const add = require("./add.js");
 const binomial_coefficient = require("./binomial_coefficient.js");
