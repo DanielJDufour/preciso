@@ -21,6 +21,7 @@ The following functions are supported:
 - [compare](#compare)
 - [cube_root](#cube-root)
 - [divide](#divide)
+- [exp](#exp)
 - [factorial](#factorial)
 - [floor](#floor)
 - [max](#max)
