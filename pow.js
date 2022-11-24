@@ -3,6 +3,7 @@
 const absolute = require("./absolute.js");
 const clean = require("./clean.js");
 const divide = require("./divide.js");
+// const fraction = require("./fraction.js");
 const is_integer = require("./is_integer");
 const is_zero = require("./is_zero.js");
 const multiply = require("./multiply.js");
@@ -42,7 +43,7 @@ function pow(
     return "1";
   }
 
-  const sign_of_base = sign(base);
+  // const sign_of_base = sign(base);
   const sign_of_exponent = sign(exponent);
 
   if (base_is_zero) {
