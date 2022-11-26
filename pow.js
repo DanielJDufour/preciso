@@ -5,6 +5,8 @@ const clean = require("./clean.js");
 const divide = require("./divide.js");
 const fraction = require("./fraction.js");
 const is_integer = require("./is_integer");
+const is_imaginary = require("./is_imaginary.js");
+const is_odd = require("./is_odd.js");
 const is_zero = require("./is_zero.js");
 const multiply = require("./multiply.js");
 const pow_positive = require("./pow_positive.js");
@@ -13,6 +15,7 @@ const root = require("./root.js");
 const round = require("./round.js");
 const sign = require("./sign");
 const simplify_fraction = require("./simplify_fraction.js");
+const is_even = require("./is_even.js");
 
 function pow(
   base,
@@ -21,12 +24,16 @@ function pow(
     zero_to_the_power_of_zero = "1",
     // passed to divide then long_division
     ellipsis = false,
+    imaginary = true,
     max_decimal_digits = 100,
     fraction: use_fraction = false
   } = {}
 ) {
   base = clean(base);
   exponent = clean(exponent);
+
+  const base_is_imaginary = is_imaginary(base);
+  if (base_is_imaginary) base = base.replace(/i$/, "");
 
   const base_is_zero = is_zero(base);
   const exponent_is_zero = is_zero(exponent);
@@ -58,6 +65,7 @@ function pow(
     if (typeof max_decimal_digits === "number") {
       product = round(product, { digits: max_decimal_digits });
     }
+    if (base_is_imaginary && is_odd(exponent)) product += "i";
     return product;
   }
 

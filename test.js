@@ -21,6 +21,7 @@ const {
   fraction,
   floor,
   // gregory_leibniz,
+  hypotenuse,
   is_factorial,
   is_infinity,
   is_positive_infinity,
@@ -51,6 +52,7 @@ const {
   sign,
   softmax,
   sort,
+  square,
   square_root,
   sum,
   subtract,
@@ -58,6 +60,17 @@ const {
 } = preciso;
 
 // const nthroot = (radicand, root) => Math.pow(radicand, 1 / root);
+
+test("hypotenuse", ({ eq }) => {
+  // some examples from https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/hypot
+  eq(hypotenuse(), "0");
+  eq(hypotenuse("-3"), "3");
+  eq(hypotenuse("3", "4"), "5");
+  eq(hypotenuse("5", "12"), "13");
+  eq(hypotenuse("3", "4", "5", { max_decimal_digits: 10 }), "7.0710678118");
+  eq(hypotenuse("3i", "4i"), "5");
+  eq(hypotenuse("3", "4i", "5", { max_decimal_digits: 10 }), "7.0710678118");
+});
 
 test("pow", ({ eq }) => {
   eq(pow("-7", "0.5", { max_decimal_digits: 20 }), "2.64575131106459059050i");
@@ -80,6 +93,8 @@ test("pow", ({ eq }) => {
   eq(pow("-7", "3"), "-343");
   eq(pow("7", "0.5", { max_decimal_digits: 20 }), "2.64575131106459059050");
   eq(pow("-7", "1/3", { max_decimal_digits: 20 }), "-1.9129311827723891012");
+  eq(pow("7i", "2"), "49");
+  eq(pow("7i", "3"), "343i");
 });
 
 test("reciprocal", ({ eq }) => {

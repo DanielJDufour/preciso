@@ -18,6 +18,7 @@ const factorial = require("./factorial.js");
 const floor = require("./floor.js");
 const fraction = require("./fraction.js");
 // const gregory_leibniz = require("./gregory_leibniz.js");
+const hypotenuse = require("./hypotenuse.js");
 const is_factorial = require("./is_factorial.js");
 const is_infinity = require("./is_infinity.js");
 const is_integer = require("./is_integer.js");
@@ -74,6 +75,7 @@ const module_exports = {
   floor,
   fraction,
   // gregory_leibniz,
+  hypotenuse,
   is_infinity,
   is_integer,
   is_factorial,

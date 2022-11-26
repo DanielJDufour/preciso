@@ -25,6 +25,7 @@ The following functions are supported:
 - [exp](#exp)
 - [factorial](#factorial)
 - [floor](#floor)
+- [hypotenuse](#hypotenuse)
 - [max](#max)
 - [mean](#mean)
 - [min](#min)
@@ -188,6 +189,23 @@ mean(["1", "2", "8"], { max_decimal_digits: 3 })
 
 mean(["1", "2", "8"], { ellipsis: true })
 "3.666..."
+```
+
+### hypotenuse
+Calculate Hypotenuse in two or more dimensions.  This was inspired by [Math.hypot](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/hypot).
+```js
+import hypotenuse from "preciso/hypotenuse.js";
+
+hypotenuse("3", "4")
+"5"
+
+// calculate in three or more dimensions
+hypotenuse("3", "4", "5", { max_decimal_digits: 10 })
+"7.0710678118"
+
+// imaginary number support
+hypotenuse("3i", "4i")
+"5"
 ```
 
 ### max
