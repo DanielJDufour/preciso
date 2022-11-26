@@ -1,6 +1,6 @@
 {
   "name": "preciso",
-  "version": "0.9.0",
+  "version": "0.10.0-0",
   "description": "Precise Mathematical Functions",
   "main": "preciso.js",
   "unpkg": "preciso.min.js",
