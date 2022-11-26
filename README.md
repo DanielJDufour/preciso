@@ -223,7 +223,6 @@ multiply(["2", "3", "4", "5"]);
 ``` 
 
 ### pow (power)
-note: currently doesn't support non-integer exponents
 ```js
 import pow from "preciso/pow.js";
 
@@ -232,6 +231,10 @@ pow("2", "3")
 
 pow("-2", "-3")
 "-0.125"
+
+// fractional exponents
+pow("8", "1/3")
+"0.5"
 
 // set zero to the power of zero
 pow("0", "0", { zero_to_the_power_of_zero: undefined })
