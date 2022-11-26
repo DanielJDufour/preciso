@@ -1,6 +1,6 @@
 "use strict";
 
-const multiply = require("./multiply.js");
+const multiply_rational = require("./multiply_rational.js");
 
 // assuming:
 // - base and exponent are clean
@@ -9,7 +9,7 @@ function pow_positive(base, exponent) {
   const imax = Number(exponent);
   let product = base;
   for (let i = 1; i < imax; i++) {
-    product = multiply(product, base);
+    product = multiply_rational([product, base]);
   }
   return product;
 }

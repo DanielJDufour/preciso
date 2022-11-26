@@ -3,30 +3,27 @@
 const absolute = require("./absolute.js");
 const clean = require("./clean.js");
 const divide = require("./divide.js");
-// const fraction = require("./fraction.js");
+const fraction = require("./fraction.js");
 const is_integer = require("./is_integer");
 const is_zero = require("./is_zero.js");
 const multiply = require("./multiply.js");
 const pow_positive = require("./pow_positive.js");
+const reciprocal = require("./reciprocal.js");
+const root = require("./root.js");
 const round = require("./round.js");
 const sign = require("./sign");
+const simplify_fraction = require("./simplify_fraction.js");
 
 function pow(
   base,
   exponent,
   {
     zero_to_the_power_of_zero = "1",
-
     // passed to divide then long_division
     ellipsis = false,
-    max_decimal_digits = 100
-  } = {
-    zero_to_the_power_of_zero: 1,
-
-    // passed on to divide then long_division
-    ellipsis: false,
-    max_decimal_digits: 100
-  }
+    max_decimal_digits = 100,
+    fraction: use_fraction = false
+  } = {}
 ) {
   base = clean(base);
   exponent = clean(exponent);
@@ -57,11 +54,7 @@ function pow(
   const exponent_is_integer = is_integer(exponent);
 
   if (sign_of_exponent === "+" && exponent_is_integer) {
-    const imax = Number(exponent);
-    let product = base;
-    for (let i = 1; i < imax; i++) {
-      product = multiply(product, base);
-    }
+    let product = pow_positive(base, exponent);
     if (typeof max_decimal_digits === "number") {
       product = round(product, { digits: max_decimal_digits });
     }
@@ -76,8 +69,27 @@ function pow(
   }
 
   if (!exponent_is_integer) {
-    // eq(pow("2", "1/3"), "1.2599210498948732"
-    throw new Error("[preciso] we don't support fractional exponents");
+    exponent = absolute(exponent);
+
+    let [numerator, denominator] = exponent.includes("/") ? exponent.split("/") : fraction(exponent);
+
+    [numerator, denominator] = simplify_fraction(numerator, denominator);
+
+    // base could be an integer or decimal
+    // denominator is an integer
+    let inner = root(base, denominator);
+
+    let result = multiply(numerator, inner);
+    // console.log({ sign_of_exponent, base, exponent, numerator, denominator, inner, result, max_decimal_digits })
+
+    if (typeof max_decimal_digits === "number") result = round(result, { digits: max_decimal_digits });
+    // console.log("rounded:", result);
+
+    if (sign_of_exponent === "-") {
+      result = reciprocal(result, { fraction: use_fraction, max_decimal_digits });
+    }
+
+    return result;
   }
 }
 

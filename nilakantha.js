@@ -1,7 +1,7 @@
 const add = require("./add.js");
 const long_addition = require("./long_addition.js");
 const divide = require("./divide.js");
-const multiply = require("./multiply.js");
+const multiply_rational = require("./multiply_rational.js");
 
 // calculate PI using Nilakantha Series
 function nilakantha(steps = 100, { divide_options } = {}) {
@@ -11,7 +11,7 @@ function nilakantha(steps = 100, { divide_options } = {}) {
   let b = "3";
   let c = "4";
   for (let i = 1; i < steps; i++) {
-    const divisor = multiply(a, b, c);
+    const divisor = multiply_rational([a, b, c]);
 
     const part = sign + divide("4", divisor, divide_options);
 

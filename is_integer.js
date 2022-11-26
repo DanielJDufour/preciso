@@ -6,7 +6,7 @@ const is_infinity = require("./is_infinity.js");
 function is_integer(n) {
   if (is_infinity(n)) return false;
   n = clean(n);
-  return !n.includes(".");
+  return !n.includes(".") && !n.includes("/");
 }
 
 module.exports = is_integer;

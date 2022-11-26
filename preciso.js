@@ -32,11 +32,13 @@ const max = require("./max.js");
 const mean = require("./mean.js");
 const min = require("./min.js");
 const multiply = require("./multiply.js");
+const multiply_array = require("./multiply_array.js");
 const multiply_range = require("./multiply_range.js");
 const nilakantha = require("./nilakantha.js");
 const pow = require("./pow.js");
 const pow_positive = require("./pow_positive.js");
 const primes = require("./primes.js");
+const reciprocal = require("./reciprocal.js");
 const remainder = require("./remainder.js");
 const root = require("./root.js");
 const root_integer_digits = require("./root_integer_digits.js");
@@ -86,11 +88,13 @@ const module_exports = {
   max,
   min,
   multiply,
+  multiply_array,
   multiply_range,
   nilakantha,
   pow,
   pow_positive,
   primes,
+  reciprocal,
   remainder,
   root,
   root_integer_digits,

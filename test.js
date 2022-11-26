@@ -43,6 +43,7 @@ const {
   pow_positive,
   remainder,
   root,
+  reciprocal,
   root_integer_digits,
   round,
   round_last_decimal,
@@ -57,6 +58,34 @@ const {
 } = preciso;
 
 // const nthroot = (radicand, root) => Math.pow(radicand, 1 / root);
+
+test("pow", ({ eq }) => {
+  eq(pow("-7", "0.5", { max_decimal_digits: 20 }), "2.64575131106459059050i");
+  eq(pow("8", "-1/3"), "0.5");
+  // examples from https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/pow
+  eq(pow("7.2", "2", { max_decimal_digits: 0 }), "52");
+  eq(pow("7", "2"), "49");
+  eq(pow("7", "3"), "343");
+  eq(pow("2", "10"), "1024");
+  eq(pow("4", "0.5"), "2");
+  eq(pow("8", "1/3"), "2");
+  // max_decimal_digits might not be working
+  eq(pow("2", "0.5").startsWith("1.414213562373095"), true);
+  eq(pow("2", "1/3").startsWith("1.2599210498948731"), true);
+  eq(
+    pow("7", "-2", { ellipsis: true, max_decimal_digits: 100000 }),
+    "0.020408163265306122448979591836734693877551020408163265306122448979591836734693877551020408163265306122448979591836734693877551..."
+  );
+  eq(pow("-7", "2"), "49");
+  eq(pow("-7", "3"), "-343");
+  eq(pow("7", "0.5", { max_decimal_digits: 20 }), "2.64575131106459059050");
+  eq(pow("-7", "1/3", { max_decimal_digits: 20 }), "-1.9129311827723891012");
+});
+
+test("reciprocal", ({ eq }) => {
+  eq(reciprocal("3/4", { fraction: true }), "4/3");
+  eq(reciprocal("0.1"), "10");
+});
 
 test("primes", ({ eq }) => {
   const results1 = primes("0", "10");
@@ -126,6 +155,12 @@ test("root", ({ eq }) => {
   eq(root("0.5", "3", { max_decimal_digits: 5 }), "0.79370");
   eq(root("1", "12345678"), "1");
   eq(root("4", "3", { max_decimal_digits: 4 }), "1.5874");
+  eq(root("-343", "3"), "-7");
+});
+
+test("cube_root", ({ eq }) => {
+  eq(cube_root("8"), "2");
+  eq(cube_root("-343", { max_decimal_digits: 4 }), "-7");
 });
 
 test("square_root", ({ eq }) => {
@@ -370,27 +405,6 @@ test("is_integer", ({ eq }) => {
 test("pow_positive", ({ eq }) => {
   eq(pow_positive("7", "2"), "49");
   eq(pow_positive("7", "3"), "343");
-});
-
-test("pow", ({ eq }) => {
-  // examples from https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/pow
-  eq(pow("7.2", "2", { max_decimal_digits: 0 }), "52");
-  eq(pow("7", "2"), "49");
-  eq(pow("7", "3"), "343");
-  eq(pow("2", "10"), "1024");
-  // eq(pow("4", "0.5"), "2");
-  // eq(pow("8", "1/3"), "2");
-  // eq(pow("2", "0.5"), "1.4142135623730951...");
-  // eq(pow("2", "1/3"), "1.2599210498948732");
-  eq(
-    pow("7", "-2", { ellipsis: true, max_decimal_digits: 100000 }),
-    "0.020408163265306122448979591836734693877551020408163265306122448979591836734693877551020408163265306122448979591836734693877551..."
-  );
-  // eq(pow("8", "-1/3"), "0.5");
-  eq(pow("-7", "2"), "49");
-  eq(pow("-7", "3"), "-343");
-  // Math.pow(-7, 0.5); => NaN?
-  // Math.pow(-7, 1/3)  => NaN?
 });
 
 test("ceil", ({ eq }) => {

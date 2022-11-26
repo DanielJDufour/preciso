@@ -11,6 +11,7 @@
 - supports scientific exponential notation
 - supports CJS and ESM
 - supports TypeScript
+- [imaginary numbers](https://en.wikipedia.org/wiki/Imaginary_number)
 
 ## basic usage
 The following functions are supported:
@@ -212,9 +213,13 @@ import multiply from "preciso/multiply.js";
 multiply("-714.7008086132632", "8135.725531"); // -714.7008086132632 * 8135.725531
 "-5814609.6156612701214627592"
 
-// pass in an array of numerical strings
-multiply(["2", "3", "4"]);
+// multiply three or more numbers
+multiply("2", "3", "4");
 "24"
+
+// pass in an array of numerical strings
+multiply(["2", "3", "4", "5"]);
+"120"
 ``` 
 
 ### pow (power)
