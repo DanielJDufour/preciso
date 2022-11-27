@@ -259,6 +259,19 @@ pow("0", "0", { zero_to_the_power_of_zero: undefined })
 undefined
 ```
 
+### reciprocal
+Calculate [reciprocal](https://en.wikipedia.org/wiki/Multiplicative_inverse) or [multiplicative inverse](https://en.wikipedia.org/wiki/Multiplicative_inverse)
+```js
+import reciprocal from "preciso/reciprocal.js"
+
+reciprocal("0.1");
+"10"
+
+// return fraction if applicable
+reciprocal("3/4", { fraction: true })
+"4/3"
+```
+
 ### remainder
 ```js
 import remainder from "preciso/truncate.js";

@@ -4,12 +4,13 @@ const absolute = require("./absolute.js");
 const clean = require("./clean.js");
 const compare_positive = require("./compare_positive.js");
 const long_multiplication = require("./long_multiplication.js");
+const round = require("./round.js");
 
 /**
  * @name multiply
  * @returns {String} product
  */
-function multiply_rational(nums, options = {}) {
+function multiply_rational(nums, { max_decimal_digits } = {}) {
   let product = clean(nums[0]);
   let product_absolute = absolute(product);
   let product_sign = product[0] === "-" ? "-" : "";
@@ -27,6 +28,7 @@ function multiply_rational(nums, options = {}) {
 
     product = product_sign + product_absolute;
   }
+  if (typeof max_decimal_digits === "number") product = round(product, { digits: max_decimal_digits });
   return product;
 }
 

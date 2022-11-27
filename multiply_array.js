@@ -11,9 +11,12 @@ const multiply_rational = require("./multiply_rational.js");
  * @param {Array.<String>} nums - array of numerical strings
  * @returns {String} product as a numerical string
  */
-function multiply_array(nums) {
+function multiply_array(nums, { max_decimal_digits } = {}) {
   const imaginary = is_odd(nums.filter(n => is_imaginary(n)).length.toString());
-  let product = multiply_rational(nums.map(n => n.replace(/i$/, "")));
+  let product = multiply_rational(
+    nums.map(n => n.replace(/i$/, "")),
+    { max_decimal_digits }
+  );
   if (imaginary) product += "i";
   return product;
 }

@@ -14,7 +14,7 @@ export function max(nums: string[]): string;
 // you can also pass in min(a, b, c, d) but I'm not sure how to type that
 export function min(nums: string[]): string;
 
-export function multiply(a: string, b: string): string;
+export function multiply(a: string, b: string, options?: { max_decimal_digits?: number }): string;
 export function pow(base: string, exponent: string, options: { ellipsis?: boolean; max_decimal_digits?: number; zero_to_the_power_of_zero?: string }): string;
 export function remainder(dividend: string, divisor: string): string;
 export function root(radicand: string, index: string, options?: { imaginary?: boolean; max_decimal_digits?: number }): string;
