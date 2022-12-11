@@ -1,4 +1,5 @@
 "use strict";
+
 const test = require("flug");
 const preciso = require("./preciso.js");
 

@@ -1,3 +1,5 @@
+"use strict";
+
 /* global define */
 const absolute = require("./absolute.js");
 const add = require("./add.js");

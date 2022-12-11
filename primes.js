@@ -1,3 +1,5 @@
+"use strict";
+
 const compare_positive = require("./compare_positive.js");
 const divide = require("./divide.js");
 const is_integer = require("./is_integer.js");

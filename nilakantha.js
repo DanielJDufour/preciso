@@ -1,3 +1,5 @@
+"use strict";
+
 const add = require("./add.js");
 const long_addition = require("./long_addition.js");
 const divide = require("./divide.js");

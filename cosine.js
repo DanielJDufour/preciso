@@ -1,3 +1,5 @@
+"use strict";
+
 const cosine_radians = require("./cosine_radians.js");
 
 /**

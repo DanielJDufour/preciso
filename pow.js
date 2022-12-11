@@ -15,7 +15,6 @@ const root = require("./root.js");
 const round = require("./round.js");
 const sign = require("./sign");
 const simplify_fraction = require("./simplify_fraction.js");
-const is_even = require("./is_even.js");
 
 function pow(
   base,

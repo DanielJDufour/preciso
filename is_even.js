@@ -1,3 +1,5 @@
+"use strict";
+
 const clean = require("./clean.js");
 const is_integer = require("./is_integer.js");
 

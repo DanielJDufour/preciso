@@ -1,3 +1,5 @@
+"use strict";
+
 const sine_radians = require("./sine_radians.js");
 
 /**

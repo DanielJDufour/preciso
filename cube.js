@@ -1,3 +1,5 @@
+"use strict";
+
 const pow = require("./pow.js");
 
 /**
