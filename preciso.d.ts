@@ -3,6 +3,10 @@ export function add(a: string, b: string): string;
 export function binomial_coefficient(n: string, k: string): string;
 export function ceil(n: string): string;
 export function compare(a: string, b: string): "<" | ">" | "=";
+export function cube(
+  base: string,
+  options?: { ellipsis?: boolean; fraction?: boolean; imaginary?: boolean; max_decimal_digits?: number; zero_to_the_power_of_zero?: string }
+): string;
 export function cube_root(radicand: string, options?: { imaginary?: boolean; max_decimal_digits?: number }): string;
 export function divide(dividend: string, divisor: string, options?: { max_decimal_digits: number; ellipsis: boolean }): string;
 export function factorial(n: string): string;
@@ -15,10 +19,18 @@ export function max(nums: string[]): string;
 export function min(nums: string[]): string;
 
 export function multiply(a: string, b: string, options?: { max_decimal_digits?: number }): string;
-export function pow(base: string, exponent: string, options: { ellipsis?: boolean; max_decimal_digits?: number; zero_to_the_power_of_zero?: string }): string;
+export function pow(
+  base: string,
+  exponent: string,
+  options?: { ellipsis?: boolean; fraction?: boolean; imaginary?: boolean; max_decimal_digits?: number; zero_to_the_power_of_zero?: string }
+): string;
 export function remainder(dividend: string, divisor: string): string;
 export function root(radicand: string, index: string, options?: { imaginary?: boolean; max_decimal_digits?: number }): string;
 export function sign(n: string): string;
+export function square(
+  base: string,
+  options?: { ellipsis?: boolean; fraction?: boolean; imaginary?: boolean; max_decimal_digits?: number; zero_to_the_power_of_zero?: string }
+): string;
 export function square_root(radicand: string, options?: { imaginary?: boolean; max_decimal_digits?: number }): string;
 export function subtract(a: string, b: string): string;
 export function truncate(n: string);
