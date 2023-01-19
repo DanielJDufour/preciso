@@ -58,7 +58,8 @@ which will set a global preciso variable.
 ```
 
 ### limitations
-- no support for `Infinity`, `-Infinity`, or `NaN`
+- limited support for `Infinity` and `-Infinity`
+- no support for `NaN`
 
 ### absolute
 ```js

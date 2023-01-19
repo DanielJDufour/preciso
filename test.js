@@ -1,4 +1,5 @@
 "use strict";
+
 const test = require("flug");
 const preciso = require("./preciso.js");
 
@@ -10,9 +11,11 @@ const {
   clean,
   compare,
   compare_positive,
-  constants,
+  // constants,
+  cosine_radians,
   count_decimal_digits,
   count_integer_digits,
+  cube,
   cube_root,
   divide,
   eulers_number,
@@ -39,6 +42,7 @@ const {
   long_subtraction,
   multiply,
   multiply_range,
+  ols,
   primes,
   pow,
   pow_positive,
@@ -50,6 +54,7 @@ const {
   round_last_decimal,
   simplify_fraction,
   sign,
+  sine_radians,
   softmax,
   sort,
   square,
@@ -60,6 +65,49 @@ const {
 } = preciso;
 
 // const nthroot = (radicand, root) => Math.pow(radicand, 1 / root);
+
+test("ols", ({ eq }) => {
+  eq(
+    ols([
+      ["0", "0"],
+      ["1", "1"],
+      ["2", "2"]
+    ]),
+    { m: "1", b: "0" }
+  );
+
+  // test data from https://medium.com/analytics-vidhya/ordinary-least-square-ols-method-for-linear-regression-ef8ca10aadfc
+  eq(
+    ols(
+      [
+        ["25", "651"],
+        ["28", "762"],
+        ["35", "853"],
+        ["40", "1062"],
+        ["46", "1190"],
+        ["53", "1293"]
+      ],
+      { max_decimal_digits: 5 }
+    ),
+    { m: "23.41401", b: "82.66978" }
+  );
+});
+
+test("cosine_radians", ({ eq }) => {
+  eq(cosine_radians("0.4014257", { steps: 10 }).startsWith("0.9205048643767727"), true);
+  eq(cosine_radians("-0"), "0");
+  eq(cosine_radians("0"), "0");
+  eq(Number(cosine_radians("1", { max_decimal_digits: 200, steps: 10 })), 0.5403023058681398);
+  eq(round(cosine_radians((2 * Math.PI).toString()), 10), "1");
+});
+
+test("sine", ({ eq }) => {
+  eq(sine_radians("0.4014257", { steps: 10 }).startsWith("0.3907311027531584"), true);
+  eq(sine_radians("-0"), "0");
+  eq(sine_radians("0"), "0");
+  eq(sine_radians("1").startsWith("0.8414709848078965"), true);
+  eq(Number(sine_radians((Math.PI / 2).toString())), 1);
+});
 
 test("hypotenuse", ({ eq }) => {
   // some examples from https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/hypot
@@ -163,6 +211,10 @@ test("softmax", ({ eq }) => {
   eq(softmax(actual, { max_decimal_digits: 8 }), expected);
 });
 
+test("root_integer_digits", ({ eq }) => {
+  eq(root_integer_digits("100", "2"), "2");
+});
+
 test("root", ({ eq }) => {
   eq(root("-9", "1"), "-9");
   eq(root("-0.25", "1"), "-0.25");
@@ -173,9 +225,27 @@ test("root", ({ eq }) => {
   eq(root("-343", "3"), "-7");
 });
 
+test("cube", ({ eq }) => {
+  eq(cube("8"), "512");
+  eq(cube("-343", { max_decimal_digits: 4 }), "-40353607");
+});
+
 test("cube_root", ({ eq }) => {
   eq(cube_root("8"), "2");
   eq(cube_root("-343", { max_decimal_digits: 4 }), "-7");
+});
+
+test("square", ({ eq }) => {
+  eq(square("-9i"), "81");
+  eq(square("-9"), "81");
+  eq(square("-2", { max_decimal_digits: 4 }), "4");
+  eq(square("-1"), "1");
+  eq(square("-0.25"), "0.0625");
+  eq(square("-0"), "0");
+  eq(square("0"), "0");
+  eq(square("1"), "1");
+  eq(square("4"), "16");
+  eq(square("9"), "81");
 });
 
 test("square_root", ({ eq }) => {

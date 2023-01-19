@@ -18,8 +18,11 @@
     "constants/max_safe_integer_length.js",
     "constants/max_safe_integer.js",
     "constants/pi_100.js",
+    "cosine.js",
+    "cosine_radians.js",
     "count_decimal_digits.js",
     "count_integer_digits.js",
+    "cube.js",
     "cube_root.js",
     "divide.js",
     "eulers_number.js",
@@ -52,6 +55,7 @@
     "multiply_range.js",
     "multiply_rational.js",
     "nilakantha.js",
+    "ols.js",
     "parse_fraction.js",
     "pow.js",
     "pow_positive.js",
@@ -70,6 +74,8 @@
     "sign.js",
     "sign_nonzero.js",
     "simplify_fraction.js",
+    "sine.js",
+    "sine_radians.js",
     "softmax.js",
     "sort.js",
     "square.js",
@@ -93,7 +99,7 @@
     "prepublishOnly": "npm run check:files",
     "test": "npm run test:js && npm run test:ts",
     "test:js": "node test.js",
-    "test:ts": "npx ts-node ./test.ts"
+    "test:ts": "npx --offline ts-node ./test.ts"
   },
   "repository": {
     "type": "git",

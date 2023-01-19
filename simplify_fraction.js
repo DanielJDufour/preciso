@@ -1,3 +1,5 @@
+"use strict";
+
 const divide = require("./divide.js");
 const is_even = require("./is_even.js");
 const min = require("./min.js");

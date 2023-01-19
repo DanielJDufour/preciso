@@ -1,3 +1,5 @@
+"use strict";
+
 const count_decimal_digits = require("./count_decimal_digits.js");
 
 /**

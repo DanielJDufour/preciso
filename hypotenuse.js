@@ -1,3 +1,5 @@
+"use strict";
+
 const square = require("./square.js");
 const square_root = require("./square_root.js");
 const sum = require("./sum.js");

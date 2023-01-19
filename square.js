@@ -1,3 +1,5 @@
+"use strict";
+
 const pow = require("./pow.js");
 
 /**
@@ -5,8 +7,8 @@ const pow = require("./pow.js");
  * @param {String} base - numerical string
  * @returns {String} square as a numerical string
  */
-function square(base) {
-  return pow(base, "2");
+function square(base, options) {
+  return pow(base, "2", options);
 }
 
 module.exports = square;

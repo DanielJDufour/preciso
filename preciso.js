@@ -1,3 +1,5 @@
+"use strict";
+
 /* global define */
 const absolute = require("./absolute.js");
 const add = require("./add.js");
@@ -7,8 +9,10 @@ const clean = require("./clean.js");
 const compare = require("./compare.js");
 const compare_positive = require("./compare_positive.js");
 const constants = require("./constants/index.js");
+const cosine_radians = require("./cosine_radians.js");
 const count_decimal_digits = require("./count_decimal_digits.js");
 const count_integer_digits = require("./count_integer_digits.js");
+const cube = require("./cube.js");
 const cube_root = require("./cube_root.js");
 const divide = require("./divide.js");
 const eulers_number = require("./eulers_number.js");
@@ -36,6 +40,7 @@ const multiply = require("./multiply.js");
 const multiply_array = require("./multiply_array.js");
 const multiply_range = require("./multiply_range.js");
 const nilakantha = require("./nilakantha.js");
+const ols = require("./ols.js");
 const pow = require("./pow.js");
 const pow_positive = require("./pow_positive.js");
 const primes = require("./primes.js");
@@ -48,8 +53,10 @@ const round_last_decimal = require("./round_last_decimal.js");
 const sign = require("./sign.js");
 const sign_nonzero = require("./sign_nonzero.js");
 const simplify_fraction = require("./simplify_fraction.js");
+const sine_radians = require("./sine_radians.js");
 const softmax = require("./softmax.js");
 const sort = require("./sort.js");
+const square = require("./square.js");
 const square_root = require("./square_root.js");
 const subtract = require("./subtract.js");
 const sum = require("./sum.js");
@@ -64,8 +71,10 @@ const module_exports = {
   compare,
   compare_positive,
   constants,
+  cosine_radians,
   count_decimal_digits,
   count_integer_digits,
+  cube,
   cube_root,
   divide,
   eulers_number,
@@ -93,6 +102,7 @@ const module_exports = {
   multiply_array,
   multiply_range,
   nilakantha,
+  ols,
   pow,
   pow_positive,
   primes,
@@ -105,8 +115,10 @@ const module_exports = {
   sign,
   sign_nonzero,
   simplify_fraction,
+  sine_radians,
   softmax,
   sort,
+  square,
   square_root,
   subtract,
   sum,

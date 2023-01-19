@@ -1,4 +1,5 @@
 "use strict";
+
 const divide = require("./divide.js");
 const is_fraction = require("./is_fraction.js");
 const parse_fraction = require("./parse_fraction.js");

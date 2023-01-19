@@ -1,3 +1,5 @@
+"use strict";
+
 const clean = require("./clean.js");
 const is_negative_infinity = require("./is_negative_infinity.js");
 const is_positive_infinity = require("./is_positive_infinity.js");
