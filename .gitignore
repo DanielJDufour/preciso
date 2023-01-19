@@ -109,3 +109,4 @@ pnpm-lock.yaml
 *bak*
 preciso.min.js
 .*
+package-lock.json
