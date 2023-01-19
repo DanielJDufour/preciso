@@ -242,8 +242,8 @@ multiply(["2", "3", "4", "5"]);
 "120"
 ```
 
-### ols (ordinary least squares)
-Use ols for simple linear regression.
+### ols
+Use ordinary least squares for simple linear regression.
 ```js
 ols(
   [
