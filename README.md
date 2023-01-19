@@ -30,6 +30,7 @@ The following functions are supported:
 - [mean](#mean)
 - [min](#min)
 - [multiply](#multiply)
+- [ols](#ols)
 - [pow](#pow)
 - [remainder](#remainder)
 - [round](#round)
@@ -239,7 +240,29 @@ multiply("2", "3", "4");
 // pass in an array of numerical strings
 multiply(["2", "3", "4", "5"]);
 "120"
-``` 
+```
+
+### ols (ordinary least squares)
+Use ols for simple linear regression.
+```js
+ols(
+  [
+    ["25", "651"],
+    ["28", "762"],
+    ["35", "853"],
+    ["40", "1062"],
+    ["46", "1190"],
+    ["53", "1293"]
+  ],
+  { max_decimal_digits: 5 }
+);
+
+// variables for equation y = m * x + b
+{
+  m: "23.41401", // slope
+  b: "82.66978" // y-intercept
+}
+```
 
 ### pow (power)
 ```js
