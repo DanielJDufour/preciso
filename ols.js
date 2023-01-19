@@ -2,7 +2,6 @@
 
 const add = require("./add.js");
 const divide = require("./divide.js");
-const multiply = require("./multiply.js");
 const multiply_rational = require("./multiply_rational.js");
 const round = require("./round.js");
 const subtract = require("./subtract.js");
@@ -46,7 +45,7 @@ function ols(points, options) {
 
   // y = m * x + b
   let m = divide(sum_of_errors, sum_of_residual_squares);
-  let b = subtract(y_mean, multiply(m, x_mean));
+  let b = subtract(y_mean, multiply_rational(m, x_mean));
 
   if (options && typeof options.max_decimal_digits === "number") {
     m = round(m, { digits: options.max_decimal_digits });
