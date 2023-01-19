@@ -31,7 +31,7 @@ function pow(
   base = clean(base);
   exponent = clean(exponent);
 
-  const base_is_imaginary = is_imaginary(base);
+  const base_is_imaginary = imaginary && is_imaginary(base);
   if (base_is_imaginary) base = base.replace(/i$/, "");
 
   const base_is_zero = is_zero(base);
@@ -84,7 +84,7 @@ function pow(
 
     // base could be an integer or decimal
     // denominator is an integer
-    let inner = root(base, denominator);
+    let inner = root(base, denominator, { imaginary });
 
     let result = multiply(numerator, inner);
     // console.log({ sign_of_exponent, base, exponent, numerator, denominator, inner, result, max_decimal_digits })

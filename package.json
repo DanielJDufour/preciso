@@ -55,6 +55,7 @@
     "multiply_range.js",
     "multiply_rational.js",
     "nilakantha.js",
+    "ols.js",
     "parse_fraction.js",
     "pow.js",
     "pow_positive.js",

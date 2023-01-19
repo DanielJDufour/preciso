@@ -40,6 +40,7 @@ const multiply = require("./multiply.js");
 const multiply_array = require("./multiply_array.js");
 const multiply_range = require("./multiply_range.js");
 const nilakantha = require("./nilakantha.js");
+const ols = require("./ols.js");
 const pow = require("./pow.js");
 const pow_positive = require("./pow_positive.js");
 const primes = require("./primes.js");
@@ -101,6 +102,7 @@ const module_exports = {
   multiply_array,
   multiply_range,
   nilakantha,
+  ols,
   pow,
   pow_positive,
   primes,

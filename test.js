@@ -11,7 +11,7 @@ const {
   clean,
   compare,
   compare_positive,
-  constants,
+  // constants,
   cosine_radians,
   count_decimal_digits,
   count_integer_digits,
@@ -42,6 +42,7 @@ const {
   long_subtraction,
   multiply,
   multiply_range,
+  ols,
   primes,
   pow,
   pow_positive,
@@ -64,6 +65,33 @@ const {
 } = preciso;
 
 // const nthroot = (radicand, root) => Math.pow(radicand, 1 / root);
+
+test("ols", ({ eq }) => {
+  eq(
+    ols([
+      ["0", "0"],
+      ["1", "1"],
+      ["2", "2"]
+    ]),
+    { m: "1", b: "0" }
+  );
+
+  // test data from https://medium.com/analytics-vidhya/ordinary-least-square-ols-method-for-linear-regression-ef8ca10aadfc
+  eq(
+    ols(
+      [
+        ["25", "651"],
+        ["28", "762"],
+        ["35", "853"],
+        ["40", "1062"],
+        ["46", "1190"],
+        ["53", "1293"]
+      ],
+      { max_decimal_digits: 5 }
+    ),
+    { m: "23.41401", b: "82.66978" }
+  );
+});
 
 test("cosine_radians", ({ eq }) => {
   eq(cosine_radians("0.4014257", { steps: 10 }).startsWith("0.9205048643767727"), true);

@@ -19,6 +19,10 @@ export function max(nums: string[]): string;
 export function min(nums: string[]): string;
 
 export function multiply(a: string, b: string, options?: { max_decimal_digits?: number }): string;
+export function ols(
+  nums: string[][] | [string, string][] | Readonly<[string, string]>[] | Readonly<Readonly<[string, string]>[]>,
+  options?: { max_decimal_digits?: number }
+): { b: string; m: string };
 export function pow(
   base: string,
   exponent: string,
