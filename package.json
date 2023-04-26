@@ -29,6 +29,7 @@
     "exp.js",
     "expand.js",
     "factorial.js",
+    "flip_sign.js",
     "floor.js",
     "fraction.js",
     "hypotenuse.js",
