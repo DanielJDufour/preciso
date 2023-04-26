@@ -21,6 +21,7 @@ const {
   eulers_number,
   exp,
   factorial,
+  flip_sign,
   fraction,
   floor,
   // gregory_leibniz,

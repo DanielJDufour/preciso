@@ -24,6 +24,7 @@ The following functions are supported:
 - [divide](#divide)
 - [exp](#exp)
 - [factorial](#factorial)
+- [flip_sign](#flip-sign)
 - [floor](#floor)
 - [hypotenuse](#hypotenuse)
 - [max](#max)
@@ -167,6 +168,21 @@ factorial("3");
 
 factorial("10");
 "3628800"
+```
+
+### flip_sign
+```js
+import flip_sign from "preciso/flip_sign.js";
+
+flip_sign(10);
+-10
+
+flip_sign(-99)
+99
+
+// zero has no sign change
+flip_sign(0)
+0
 ```
 
 ### floor

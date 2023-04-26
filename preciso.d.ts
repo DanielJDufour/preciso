@@ -10,6 +10,7 @@ export function cube(
 export function cube_root(radicand: string, options?: { imaginary?: boolean; max_decimal_digits?: number }): string;
 export function divide(dividend: string, divisor: string, options?: { max_decimal_digits: number; ellipsis: boolean }): string;
 export function factorial(n: string): string;
+export function flip_sign(n: string): string;
 export function floor(n: string): string;
 
 // you can also pass in max(a, b, c, d) but I'm not sure how to type that

@@ -19,6 +19,7 @@ const eulers_number = require("./eulers_number.js");
 const exp = require("./exp.js");
 const expand = require("./expand.js");
 const factorial = require("./factorial.js");
+const flip_sign = require("./flip_sign.js");
 const floor = require("./floor.js");
 const fraction = require("./fraction.js");
 // const gregory_leibniz = require("./gregory_leibniz.js");
@@ -81,6 +82,7 @@ const module_exports = {
   exp,
   expand,
   factorial,
+  flip_sign,
   floor,
   fraction,
   // gregory_leibniz,
