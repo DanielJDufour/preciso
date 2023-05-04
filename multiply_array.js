@@ -2,6 +2,7 @@
 
 const is_imaginary = require("./is_imaginary.js");
 const is_odd = require("./is_odd.js");
+const is_zero = require("./is_zero.js");
 const multiply_rational = require("./multiply_rational.js");
 
 /**
@@ -12,6 +13,8 @@ const multiply_rational = require("./multiply_rational.js");
  * @returns {String} product as a numerical string
  */
 function multiply_array(nums, { max_decimal_digits } = {}) {
+  if (nums.some(n => is_zero(n))) return "0";
+
   const imaginary = is_odd(nums.filter(n => is_imaginary(n)).length.toString());
   let product = multiply_rational(
     nums.map(n => n.replace(/i$/, "")),
