@@ -2,15 +2,37 @@
 
 const clean = require("./clean");
 const compare_positive = require("./compare_positive.js");
+const is_infinity = require("./is_infinity.js");
 const long_addition = require("./long_addition.js");
 const long_subtraction = require("./long_subtraction.js");
 
-function subtract(a, b) {
+function subtract(a, b, { infinity_minus_infinity = "NaN" } = {}) {
   a = clean(a);
   b = clean(b);
 
-  const a_is_positive = a[0] !== "-";
-  const b_is_positive = b[0] !== "-";
+  const a_is_negative = a[0] === "-";
+  const b_is_negative = b[0] === "-";
+
+  const a_is_positive = !a_is_negative;
+  const b_is_positive = !b_is_negative;
+
+  const ainf = is_infinity(a);
+  const binf = is_infinity(b);
+
+  if (ainf && binf) {
+    if (a_is_positive === b_is_positive) {
+      return infinity_minus_infinity;
+    } else if (a_is_positive) {
+      return "Infinity"; // inf - -inf
+    } else if (b_is_positive) {
+      return "-Infinity"; // -inf - inf
+    }
+  } else if (ainf) {
+    return a;
+  } else if (binf) {
+    return b_is_positive ? "-Infinity" : "Infinity";
+  }
+
   if (a_is_positive) {
     if (b_is_positive) {
       const comparison = compare_positive(a, b);

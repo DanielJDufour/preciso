@@ -78,6 +78,15 @@ import add from "preciso/add.js";
 
 add("0.1", "0.2"); // 0.1 + 0.2
 "0.3"
+
+add("Infinity", "0.1");
+"Infinity"
+
+add("Infinity", "-Infinity");
+"NaN"
+
+add("Infinity", "-Infinity", { infinity_minus_infinity: null });
+null
 ```
 
 ### binomial_coefficient
@@ -256,6 +265,15 @@ multiply("2", "3", "4");
 // pass in an array of numerical strings
 multiply(["2", "3", "4", "5"]);
 "120"
+
+multiply(["2", "-Infinity"]);
+"-Infinity"
+
+multiply(["0", "-Infinity"]);
+"NaN"
+
+multiply(["0", "-Infinity"], { infinity_times_zero: null });
+null
 ```
 
 ### ols
@@ -407,6 +425,12 @@ import subtract from "preciso/subtract.js";
 
 subtract("10", "2.14"); // 10 - 2.14
 "7.86"
+
+subtract("Infinity", "Infinity");
+"NaN"
+
+subtract("Infinity", "Infinity", { infinity_minus_infinity: "0" });
+"0"
 ```
 
 ### sum
