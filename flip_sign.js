@@ -15,7 +15,7 @@ function flip_sign(n) {
     return "-" + n;
   }
 
-  return sum;
+  return undefined;
 }
 
 module.exports = flip_sign;
