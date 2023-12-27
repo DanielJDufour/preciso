@@ -119,7 +119,7 @@
   },
   "homepage": "https://github.com/DanielJDufour/preciso#readme",
   "devDependencies": {
-    "big.js": "^6.1.1",
-    "flug": "^2.2.0"
+    "big.js": "^6.2.1",
+    "flug": "^2.7.1"
   }
 }
